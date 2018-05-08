@@ -1,22 +1,27 @@
 package Producto;
 
 import junit.framework.TestCase;
-import utility.Constant;
-//import utility.ExcelUtils;
+import utility.ExcelUtils;
 
 public class Datos_Producto extends TestCase {
 	
-//	public String setAltaProductos() throws Exception {
-//		
-//		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Producto");
-//		String name = ExcelUtils.getCellData(0,0);
-//		String description = ExcelUtils.getCellData(0,1);
-//		
-//		
-//		System.out.printf(name,description);
-//
-//		return name;
-//		
-	}
+	public String setDatos_Productos(String bienID,String claseID, String claseName, String claseDescription, String subClaseID,
+			String subClaseName, String subClaseDescription, String marcaID, String marcaName, String marcaDescription, 
+			String modeloID, String modeloName, String modeloDescription, String version) throws Exception{
 
-//}
+
+
+		String productoName = ExcelUtils.getCellData(1,12);
+
+		
+
+		Alta_Producto objProducto = new Alta_Producto();
+		objProducto.setAltaProducto(bienID, claseID, claseName, claseDescription, subClaseID, subClaseName, subClaseDescription, 
+				marcaID, marcaName, marcaDescription, modeloID, modeloName, modeloDescription, version,productoName);
+		String variable_json = objProducto.getAltaProducto();
+		
+		
+		return variable_json;
+	}
+}
+

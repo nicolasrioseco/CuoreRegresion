@@ -7,7 +7,7 @@ public class Alta_Bien {
 
 	public void setaltaClase(String idClase, String nameClase, String descriptionClase, String idSubClase, String nameSubClase, String descriptionSubClase,
 							String idAsocMarca, String nameMarca, String descriptionMarca, String idModelo, String nameModelo, String descriptionModelo,
-							String nameAtributo, String valorVersion, String tipificacion, String patentable, String semaforo, String iva, String bodyAtributo, String idAtributo) {
+							String nameAtributo, String valorVersion, String tipificacion, String patentable, String semaforo, String iva, String bodyAtributo, String idAtributo, String valorTipo) {
 		
 		this.bien = ("{" + 
 				"\"classId\": " + idClase + "," + 
@@ -29,7 +29,7 @@ public class Alta_Bien {
 				"\"attribute\": " + tipificacion + "," + 
 				"\"booleanValue\": false," + 
 				"\"idAttribute\": 1," + 
-				"\"idTableValue\": 4," + 
+				"\"idTableValue\": " + valorTipo + "," + 
 				"\"optionValue\": null," + 
 				"\"modificable\": false," + 
 				"\"defineVersion\": false," + 

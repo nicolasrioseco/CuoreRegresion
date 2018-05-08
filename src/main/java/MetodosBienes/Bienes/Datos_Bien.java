@@ -20,10 +20,11 @@ public class Datos_Bien {
 		String descriptionMarca = ExcelUtils.getCellData(row,8);
 		String nameModelo = ExcelUtils.getCellData(row,9);
 		String descriptionModelo = ExcelUtils.getCellData(row,10);
+		String valorTipo = ExcelUtils.getCellData(row,15);
 		
 		Alta_Bien altaBien = new Alta_Bien();
-		altaBien.setaltaClase(idClase, nameClase, descriptionClase, idSubClase, nameSubClase, descriptionSubClase, idAsocMarca, nameMarca, descriptionMarca, 
-								idModelo, nameModelo, descriptionModelo, nameAtributo, valorVersion, tipificacion, patentable, semaforo, iva, bodyAtributo, idAtributo);
+		altaBien.setaltaClase(idClase, nameClase, descriptionClase, idSubClase, nameSubClase, descriptionSubClase, idAsocMarca, nameMarca, descriptionMarca, idModelo,  
+								nameModelo, descriptionModelo, nameAtributo, valorVersion, tipificacion, patentable, semaforo, iva, bodyAtributo, idAtributo, valorTipo);
 		
 		String post = altaBien.getaltaClase();
 		return post;

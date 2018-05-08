@@ -54,7 +54,7 @@ public class Ejecutor_Api{
 	public void metodosAltaBienes() throws Exception {
 		
 		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Bienes");
-		int registros = (int) ExcelUtils.getCellDataint(3,12);
+		int registros = (int) ExcelUtils.getCellDataint(3,13);
 		int i;
 		
 		if(registros != 0) {
@@ -66,25 +66,24 @@ public class Ejecutor_Api{
 			int row = (i+3);
 		ParametrosBienes setParametros = new ParametrosBienes();
 		setParametros.atributo(row);
-		setParametros.extraerAtributos(row);
-		bienes[i][0] = setParametros.clase(row);
-		bienes[i][1] = setParametros.subClase(row);
-		bienes[i][2] = setParametros.marca(row);
-		setParametros.modelo(row);
+		setParametros.extraerAtributos();
+		bienes[i][0] = setParametros.clase();
+		bienes[i][1] = setParametros.subClase();
+		bienes[i][2] = setParametros.marca();
+		setParametros.modelo();
 		setParametros.extraerModel();
-		bienes[i][3] = setParametros.bien(row);
+		bienes[i][3] = setParametros.bien();
+		setParametros.JBPMBienes();
 		}
-		System.out.println("Se dieron de alta " + registros + " atributos");
-		System.out.println("Se dieron de alta " + registros + " clases");
-		System.out.println("Se dieron de alta " + registros + " subclases");
-		System.out.println("Se dieron de alta " + registros + " marcas");
-		System.out.println("Se dieron de alta " + registros + " modelos");
+		System.out.println("Se procesaron " + registros + " registros, generando: atributos, clase, subclases, marcas y modelos");
 		System.out.println("Se dieron de alta " + registros + " bienes");
+		System.out.println("Y se realizaron los flujo de aprobación de los mismos");
 		}else {
 			System.out.println("No hay Bienes para dar de alta");
 		}
 		
 	}
+	
 	
 	@OrderedTest(order=3)
 	@Test
@@ -183,118 +182,3 @@ public class Ejecutor_Api{
 		}
 	}
 }
-
-
-
-//	@Test
-//	public void Producto() throws Exception {
-//		
-//		Datos_Producto altaProducto = new Datos_Producto();
-//		String name = altaProducto.setAltaProductos();
-//		System.out.println(name);
-//		String altaProducto_post = altaProducto.getAltaProducto();
-//		
-//				given()
-//					.contentType("application/json")
-//					.headers("x-auth-token",token)
-//					.body(altaProducto_post)
-//				.when()
-//					.post(Defoult_URL+"products/product")
-//				.then().assertThat().statusCode(201);
-//	}
-//
-//	@Test
-//	public void servicios() throws InterruptedException{
-//		
-//		
-//		
-//		String getBien = "http://34.234.32.246:8082/api/products/good/good/search?page=1&size=15&version=&classId=2000062&subclassId=2000130&brandId=2000134&modelId=2000135";
-//		String bodyBien=
-//		given()
-//			.contentType("application/json")
-//			.headers("x-auth-token",token)
-//			.when().get(getBien).getBody().asString();		
-//		this.bien = ((((bodyBien.split("\"content\":\\[\\{"))[1])).split("\\}\\]"))[0];
-//		System.out.println(bien);
-//		
-//		
-//		Datos_Servicio datosServicio = new Datos_Servicio();
-//		String post = datosServicio.setdatosServicio(bien);
-//		int idServicio = 
-//				given()
-//		.contentType("application/json")
-//		.headers("x-auth-token",token)
-//		.body(post)
-//		.when().post(Defoult_URL+"products/service")
-//		.then()
-//		.assertThat().statusCode(201).extract().path("id");
-//		
-//		System.out.println("Se generÃ³ el servicio: " + (idServicio));
-//		
-//		Thread.sleep(3000);
-//		
-//		JBPM_Servicio jbpmServicio = new JBPM_Servicio();
-//		System.out.println(jbpmServicio.jbpmServicio(idServicio,Defoult_URL));
-//		
-//		final Gson gson = new Gson();
-//		final String representacionJSON = gson.toJson(post);
-//		assertEquals("{\"id\":46,\"nombre\":\"Miguel\",\"empresa\":\"Autentia\"}", representacionJSON);	
-//	
-//	}
-//
-//@Test
-//public void acuerdoServicio() throws InterruptedException{
-//	
-//	Datos_Proveedor datos_Proveedor = new Datos_Proveedor();
-//	String post = datos_Proveedor.setdatosProveedor();
-//	String proveedor=
-//	given()
-//	.contentType("application/json")
-//	.headers("x-auth-token",token)
-//	.body(post)
-//	.when().post(Defoult_URL+"products/supplier")
-//	.then()
-//	.assertThat().statusCode(201).extract().body().asString();
-//	final Gson gson = new Gson();
-//	this.proveedor = gson.toJson(proveedor);
-//	System.out.println("llegue aca");
-//	
-//	Thread.sleep(1000);
-//	
-//	String getBien = "http://34.234.32.246:8082/api/products/good/good/search?page=1&size=15&version=&classId=2000062&subclassId=2000130&brandId=2000134&modelId=2000135";
-//	String bodyBien=
-//	given()
-//		.contentType("application/json")
-//		.headers("x-auth-token",token)
-//		.when().get(getBien).getBody().asString();		
-//	this.bien = ((((bodyBien.split("\"content\":\\[\\{"))[1])).split("\\}\\]"))[0];
-//	
-//	Thread.sleep(1000);
-//	
-//	Datos_altaAcuerdo datosAcuerdo = new Datos_altaAcuerdo();
-//	String post2 = datosAcuerdo.setDatosAcuerdo(bien, proveedor);
-//	given()
-//	.contentType("application/json")
-//	.headers("x-auth-token",token)
-//	.body(post2)
-//	.when().post(Defoult_URL+"products/supplier/agreement")
-//	.then()
-//	.assertThat().statusCode(201);
-//
-//	System.out.println(post2);	
-//}
-//
-//@Test
-//public void obtenerAnalisisactivoID() throws Exception {
-//
-// String procesoID_Bien =
-//   given() 
-//   .contentType("application/json")
-//   .headers("x-auth-token","eyJraWQiOiJCTWltU1VNNWtxNTJsSXhDQk1LWiswQlBnSjNleE1sb3VCQlRDMlhIRk5BPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI2YjBiNjY3YS00ZGM4LTQ5OTktYTM5ZS02YjliYWZmMzhkZWQiLCJjb2duaXRvOmdyb3VwcyI6WyJDVU9SRS1BZG1pbiJdLCJldmVudF9pZCI6IjNlNzdlY2E3LTM4ZGItMTFlOC1hMGZmLTE1YmVkYmIxZmYyZiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1MjI5Mzc0OTMsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX0VmWXZQajdCRyIsImV4cCI6MTUyMjk0MTA5MywiaWF0IjoxNTIyOTM3NDkzLCJqdGkiOiI5NmNjMjJmMS0wYWEyLTRkZjctYWQxMi1jNzI4YjQ3M2M4Y2IiLCJjbGllbnRfaWQiOiIxbTZqamZpbDVuaXVjcml2ZDgyZnVuamlmcyIsInVzZXJuYW1lIjoiY3VvcmUuYWRtaW4uUUEifQ.RJiOseAcOCAs9i_ktU1RC9ohrSkP-lxfW_vx3JLoT2Xzuat1XvlfjCdX-7-_J96Sw4oQ38ZRY1i7q-jlVs9CMWBNBaSjWGSWYLXiOhhk4lE4nGuMhvBA0_lpPkw0fLgANq1Ua7KPH7BZ5xyfIU4G2WL9TlOmR4GfHNzYgqwgMGUBR0XrdYE_wCN_DzXOY5AC3_80r71DPOBA-2qQmkwc03z1PBeaInMnV2MwSBCzKU3eeK8Jtxwq5c83S43HzaZowk_7L8aTVzEMWwxZYSondAg3zuGEnP9StlZ1dGbjalLuAvmIEmbNhXb28ITtYvL0R_ZxljOOCHNUoJIraXF3cw")
-//   .queryParam("page", 1)
-//   .queryParam("size", 10)
-//   .queryParam("name", "Analizar Bien por Activos")
-//   .when().get("http://34.234.32.246:8082/api/bpm/cuore.admin.QA").getBody().asString();
-// 
-// System.out.println(procesoID_Bien);
-//}

@@ -4,7 +4,7 @@ public class Alta_SubClase {
 	
 	private String altaSubClase;
 	
-	public void setSubClase (String name, String description, String bodyClase, String bodyAtributo, String idAtributo, String valorVersion, int iva) {
+	public void setSubClase (String name, String description, String bodyClase, String bodyAtributo, String idAtributo, String valorVersion, int iva, String valorTipo) {
 		
 		this.altaSubClase = ("{" + 
 				"\"name\": \"" + name + "\"," + 
@@ -242,7 +242,7 @@ public class Alta_SubClase {
 				"\"value\": {" + 
 				"\"textValue\": \"\"," + 
 				"\"booleanValue\": false," + 
-				"\"idTableValue\": \"4\"" + 
+				"\"idTableValue\": \"" + valorTipo + "\"" + 
 				"}" + 
 				"}," + 
 				"{" + 
