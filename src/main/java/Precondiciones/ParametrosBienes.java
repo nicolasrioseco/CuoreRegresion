@@ -300,7 +300,6 @@ public class ParametrosBienes {
 		TareaAnalizarBienPorActivos analizarBienXActivos = new TareaAnalizarBienPorActivos();
 
 		String post_AnalisisActivos= analizarBienXActivos.setTareaAnalizarBienPorActivos(bodyBien, valorTipo, vidaUtil);
-		System.out.println(post_AnalisisActivos);
 		given() 
 		.contentType("application/json")
 		.headers("x-auth-token",token)
@@ -368,8 +367,6 @@ public class ParametrosBienes {
 
 
 		procesoAnalizarViabilidadID = ((procesoAnalizarViabilidadID.split("id\":"))[1]).split(",\"name")[0];
-
-		System.out.println("ID DE LA TAREA ANALIZAR VIABILIDAD DEL BIEN" + " " + procesoAnalizarViabilidadID);
 
 	}
 

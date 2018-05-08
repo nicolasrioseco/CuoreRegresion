@@ -13,6 +13,7 @@ import OrdenEjecucion.OrderedTest;
 import OrdenEjecucion.TestRunner;
 
 import Precondiciones.ParametrosBienes;
+import Precondiciones.ParametrosProductos;
 import Precondiciones.ParametrosProveedores;
 import Precondiciones.ParametrosServicios;
 import Precondiciones.ParametrosTasas;
@@ -179,6 +180,27 @@ public class Ejecutor_Api{
 		}
 		}else {
 			System.out.println("No hay Servicios para dar de alta");
+		}
+	}
+	
+	@OrderedTest(order=7)
+	@Test
+	public void metodosProducto() throws Exception {
+		
+		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Productos");
+		int registros = (int) ExcelUtils.getCellDataint(3,10);
+		int i;
+		if(registros != 0) {
+			
+		for (i= 0; i < (registros); i++) {
+			int row = (i+3);
+			int seleccionBien = (int) ExcelUtils.getCellDataint(row,15);
+			ParametrosProductos setParametros = new ParametrosProductos();
+			setParametros.AltaProducto(row, bienes[seleccionBien][3]);
+		}
+		System.out.println("Se dieron de alta " + registros + " Productos");
+		}else {
+			System.out.println("No hay Productos para dar de alta");
 		}
 	}
 }
