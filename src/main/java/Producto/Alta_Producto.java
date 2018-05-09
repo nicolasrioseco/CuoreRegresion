@@ -1,40 +1,38 @@
 package Producto;
 
 public class Alta_Producto {
-	
+
 	public static String altaProducto;
 
 	public void setAltaProducto(String nombreProducto, String feeDador, String feeImpoDador, String bodyBien, 
-								String valorFeeAdm, String valorFeeImpo, String tna) {
-		
-		System.out.println(bodyBien);
-		
+			int valorFeeAdm, int valorFeeImpo, int tna, String bodyTasa) {
+
 		String bodyBien1 = bodyBien.split("\"status\":\"Borrador\"")[0];
-		
+
 		String Comafi = ("{" + 
 				"\"applyImpBenefit\": false," + 
 				"\"lessorId\": 2," + 
 				"\"lessorName\": \"COMAFI\"" + 
 				"}");
-		
+
 		String TCC = ("{" + 
 				"\"applyImpBenefit\": true," + 
 				"\"lessorId\": 1," + 
 				"\"lessorName\": \"TCC\"" + 
 				"}");
-		
+
 		if(feeDador=="Comafi") {
 			feeDador = Comafi;
 		}else {
 			feeDador = TCC;
 		}
-		
+
 		if(feeImpoDador=="Comafi") {
 			feeImpoDador = Comafi;
 		}else {
 			feeImpoDador = TCC;
 		}
-		
+
 		Alta_Producto.altaProducto = ("{" + 
 				"\"bankings\": []," + 
 				"\"subBankings\": []," + 
@@ -874,22 +872,7 @@ public class Alta_Producto {
 				"\"tnaPercentageValueVisible\": true," + 
 				"\"gracePeriodVisible\": true," + 
 				"\"feeBonificationVisible\": true," + 
-				"\"rateSubtype\": {" + 
-				"\"parentRateId\": null," + 
-				"\"rateDate\": null," + 
-				"\"rateID\": 724," + 
-				"\"rateInterest\": 0," + 
-				"\"rateIsMultiplier\": false," + 
-				"\"rateIsTop\": false," + 
-				"\"rateState\": \"Alta\"," + 
-				"\"rateSub\": []," + 
-				"\"rateSubTypeRate\": \"SubTipo Tasa Fija 1\"," + 
-				"\"rateTypeMoney\": \"Peso\"," + 
-				"\"rateTypeRate\": {" + 
-				"\"description\": \"Fija\"," + 
-				"\"id\": 1" + 
-				"}" + 
-				"}," + 
+				"\"rateSubtype\": " + bodyTasa + "," + 
 				"\"percentualFeeToPayValue\": " + valorFeeImpo + "," + 
 				"\"admFeeLessorPercentageValue\": " + valorFeeAdm + "," + 
 				"\"tnaPercentageValue\": " + tna + "," + 
@@ -914,7 +897,7 @@ public class Alta_Producto {
 				"\"campaign\": \"\"" + 
 				"}}}");
 	}
-	
+
 	public String getAltaProducto() {
 		return altaProducto;
 	}

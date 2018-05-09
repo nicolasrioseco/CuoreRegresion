@@ -2,6 +2,9 @@ package Precondiciones;
 
 import static io.restassured.RestAssured.given;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import MetodosBienes.Atributo.Datos_Atributo;
 import MetodosBienes.Bienes.Datos_Bien;
 import MetodosBienes.Clase.Datos_Clase;
@@ -38,12 +41,7 @@ public class ParametrosBienes {
 	public static String idAsocMarca;
 	public static String bodyModelo;
 	public static String idModelo;
-	public static String tipificacion;
-	public static String patentable;
-	public static String newAtributo;
-	public static String iva;
 	public static String bodyBien;
-	public static String semaforo;
 	public static String valorTipo;
 	public static String procesoID_Bien;
 	public static String bienID;
@@ -52,7 +50,9 @@ public class ParametrosBienes {
 	public static String vidaUtil;
 	public static String procesoAnalizarViabilidadID;
 	public static int row;
-	
+	public static ArrayList<String> nombresCabeceras = new ArrayList<String>(Arrays.asList("Tipificación","Patentable", "Semaforo", "IVA"));
+	public static ArrayList<String> bodyCabeceras = new ArrayList<String>();
+
 	public void atributo(int row) throws Exception {
 		Datos_Atributo datos_Atributos = new Datos_Atributo();
 		String atributo_post = datos_Atributos.setdatos_atributo(row);
@@ -71,43 +71,21 @@ public class ParametrosBienes {
 
 	public void extraerAtributos() throws Exception {
 
-
-		String getTipificacion = (Defoult_URL + "products/good/attribute/search?page=1&size=15&name=Tipificaci&status=true");
-		Response responseTipificacion=
-				given()
-				.contentType("application/json")
-				.headers("x-auth-token",token)
-				.when().get(getTipificacion);
-		String serchTipificacion = responseTipificacion.getBody().asString();
-		ParametrosBienes.tipificacion = (((serchTipificacion.split("content\":\\["))[1]).split("\\]\\}"))[0];
-
-		String getPatentable = (Defoult_URL + "products/good/attribute/search?page=1&size=15&name=Patentable&status=true");
-		Response responsePatentable=
-				given()
-				.contentType("application/json")
-				.headers("x-auth-token",token)
-				.when().get(getPatentable);
-		String serchPatentable = responsePatentable.getBody().asString();
-		ParametrosBienes.patentable = (((serchPatentable.split("content\":\\["))[1]).split("\\]\\}"))[0];
-
-
-		String getSemaforo = (Defoult_URL + "products/good/attribute/search?page=1&size=15&name=Semaforo&status=true");
-		Response responseSemaforo=
-				given()
-				.contentType("application/json")
-				.headers("x-auth-token",token)
-				.when().get(getSemaforo);
-		String serchSemaforo = responseSemaforo.getBody().asString();
-		ParametrosBienes.semaforo = (((serchSemaforo.split("content\":\\["))[1]).split("\\]\\}"))[0];
-
-		String getIVA = (Defoult_URL + "products/good/attribute/search?page=1&size=15&name=IVA&status=true");
-		Response responseIVA=
-				given()
-				.contentType("application/json")
-				.headers("x-auth-token",token)
-				.when().get(getIVA);
-		String serchIVA = responseIVA.getBody().asString();
-		ParametrosBienes.iva = (((serchIVA.split("content\":\\["))[1]).split("\\]\\}"))[0];
+		int i;
+		for(i=0; i < 4;i++) {
+			String getPatentable = (Defoult_URL + "products/good/attribute/search");
+			Response responseCabecera=
+					given()
+					.contentType("application/json")
+					.headers("x-auth-token",token)
+					.queryParam("page", 1)
+					.queryParam("size", 15)
+					.queryParam("name", nombresCabeceras.get(i))
+					.queryParam("status", "true")
+					.when().get(getPatentable);
+			String serchCabecera = responseCabecera.getBody().asString();
+			ParametrosBienes.bodyCabeceras.add(i, (((serchCabecera.split("content\":\\["))[1]).split("\\]\\}"))[0]);	
+		}
 	}
 
 
@@ -193,8 +171,6 @@ public class ParametrosBienes {
 
 	public void extraerModel() {
 
-
-		String getModel = (Defoult_URL + "products/good/model/search");
 		Response responseModel=
 				given()
 				.contentType("application/json")
@@ -205,7 +181,7 @@ public class ParametrosBienes {
 				.queryParam("classId", idClase)
 				.queryParam("subclassId", idSubClase)
 				.queryParam("brandId", idAsocMarca)
-				.when().get(getModel);
+				.when().get(Defoult_URL + "products/good/model/search");
 		String serchModel = responseModel.getBody().asString();
 		ParametrosBienes.idModelo = (((serchModel.split("content\":\\[\\{\"id\":"))[1]).split(",\"name"))[0];
 	}
@@ -215,13 +191,7 @@ public class ParametrosBienes {
 
 
 		Datos_Bien altaBien = new Datos_Bien();
-		System.out.println("Id Clase: " + idClase + " Id SubClase: " + idSubClase + "Id Modelo: " + idModelo);
-		System.out.println("Tipificación: " + tipificacion);
-		System.out.println("Patentable: " + patentable);
-		System.out.println("Semáforo: " + semaforo);
-		System.out.println("IVA: " + iva);
-		String altaBien_post = altaBien.datosBien(idClase, idSubClase, idAsocMarca, idModelo, tipificacion, patentable, semaforo, iva, bodyAtributo, idAtributo, row);
-		System.out.println("Json enviado: " + altaBien_post);
+		String altaBien_post = altaBien.datosBien(idClase, idSubClase, idAsocMarca, idModelo, bodyCabeceras.get(0), bodyCabeceras.get(1), bodyCabeceras.get(2), bodyCabeceras.get(3), bodyAtributo, idAtributo, row);
 		ParametrosBienes.bodyBien =
 				given()
 				.contentType("application/json")
@@ -229,14 +199,13 @@ public class ParametrosBienes {
 				.body(altaBien_post)
 				.when()
 				.post(Defoult_URL+"products/good").getBody().asString();
-		System.out.println("Response: " + bodyBien);
 		ParametrosBienes.idBien = (((bodyBien.split("\\{\""))[1]).split(",\"classId"))[0];
 
 		return bodyBien;
 	}
 
 	public void JBPMBienes() throws Exception {
-		
+
 		obtenerNumeroProceso_Bien();
 		obtenerIDActivosYSeguros();
 		TareaAnalisisBienPorActivos();
@@ -247,8 +216,8 @@ public class ParametrosBienes {
 		TareaAnalizarViabilidad();
 		CompleteAnalizarViabilidad();
 	}
-	
-	
+
+
 	//Para obtener el numero procesID
 
 	public void obtenerNumeroProceso_Bien() throws Exception {
