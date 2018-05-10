@@ -52,6 +52,7 @@ public class ParametrosBienes {
 	public static int row;
 	public static ArrayList<String> nombresCabeceras = new ArrayList<String>(Arrays.asList("Tipificación","Patentable", "Semaforo", "IVA"));
 	public static ArrayList<String> bodyCabeceras = new ArrayList<String>();
+	public static ArrayList<String> idCabecera = new ArrayList<String>();
 
 	public void atributo(int row) throws Exception {
 		Datos_Atributo datos_Atributos = new Datos_Atributo();
@@ -73,7 +74,7 @@ public class ParametrosBienes {
 
 		int i;
 		for(i=0; i < 4;i++) {
-			String getPatentable = (Defoult_URL + "products/good/attribute/search");
+			String getCabecera = (Defoult_URL + "products/good/attribute/search");
 			Response responseCabecera=
 					given()
 					.contentType("application/json")
@@ -82,9 +83,10 @@ public class ParametrosBienes {
 					.queryParam("size", 15)
 					.queryParam("name", nombresCabeceras.get(i))
 					.queryParam("status", "true")
-					.when().get(getPatentable);
+					.when().get(getCabecera);
 			String serchCabecera = responseCabecera.getBody().asString();
-			ParametrosBienes.bodyCabeceras.add(i, (((serchCabecera.split("content\":\\["))[1]).split("\\]\\}"))[0]);	
+			ParametrosBienes.bodyCabeceras.add((i+2), (((serchCabecera.split("content\":\\["))[1]).split("\\]\\}"))[0]);
+			ParametrosBienes.idCabecera.add((i+2), (((bodyCabeceras.get(i+2)).split("\\{\"id\":"))[1]).split(",\"name\"")[0]);
 		}
 	}
 
@@ -110,7 +112,9 @@ public class ParametrosBienes {
 	public String subClase() throws Exception {
 
 		Datos_SubClase datosSubClase = new Datos_SubClase();
-		String subClase_post = datosSubClase.setdatos_clase(bodyClase, bodyAtributo, idAtributo, row);
+		String subClase_post = datosSubClase.setdatos_clase(bodyClase, bodyAtributo, idAtributo, row, bodyCabeceras.get(2), idCabecera.get(2), 
+				bodyCabeceras.get(3), idCabecera.get(3), bodyCabeceras.get(4), idCabecera.get(4), bodyCabeceras.get(5), idCabecera.get(5),
+				bodyCabeceras.get(0), idCabecera.get(0), bodyCabeceras.get(1), idCabecera.get(1));
 		ParametrosBienes.bodySubClase =
 				given()
 				.contentType("application/json")
@@ -191,7 +195,9 @@ public class ParametrosBienes {
 
 
 		Datos_Bien altaBien = new Datos_Bien();
-		String altaBien_post = altaBien.datosBien(idClase, idSubClase, idAsocMarca, idModelo, bodyCabeceras.get(0), bodyCabeceras.get(1), bodyCabeceras.get(2), bodyCabeceras.get(3), bodyAtributo, idAtributo, row);
+		String altaBien_post = altaBien.datosBien(idClase, idSubClase, idAsocMarca, idModelo, bodyCabeceras.get(2), idCabecera.get(2), 
+				bodyCabeceras.get(3), idCabecera.get(3), bodyCabeceras.get(4), idCabecera.get(4), bodyCabeceras.get(5), idCabecera.get(5),
+				bodyCabeceras.get(0), idCabecera.get(0), bodyCabeceras.get(1), idCabecera.get(1), bodyAtributo, idAtributo, row);
 		ParametrosBienes.bodyBien =
 				given()
 				.contentType("application/json")
@@ -263,8 +269,8 @@ public class ParametrosBienes {
 	public void TareaAnalisisBienPorActivos() throws Exception {
 
 		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Bienes");
-		ParametrosBienes.valorTipo = ExcelUtils.getCellData(row,15);
-		ParametrosBienes.vidaUtil = ExcelUtils.getCellData(row,17);
+		ParametrosBienes.valorTipo = ExcelUtils.getCellData(row,17);
+		ParametrosBienes.vidaUtil = ExcelUtils.getCellData(row,19);
 
 		TareaAnalizarBienPorActivos analizarBienXActivos = new TareaAnalizarBienPorActivos();
 

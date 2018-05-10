@@ -7,7 +7,9 @@ public class Alta_Bien {
 
 	public void setaltaClase(String idClase, String nameClase, String descriptionClase, String idSubClase, String nameSubClase, String descriptionSubClase,
 							String idAsocMarca, String nameMarca, String descriptionMarca, String idModelo, String nameModelo, String descriptionModelo,
-							String nameAtributo, String valorVersion, String tipificacion, String patentable, String semaforo, String iva, String bodyAtributo, String idAtributo, String valorTipo) {
+							String nameAtributo, String valorVersion, String tipificacion, String idTipificacion, String patentable, String idPatentable, 
+							String semaforo, String idSemaforo, String iva, String idIva, String tipoSeguro, String idTipo, String claseSeguro, 
+							String idClasSeg, String bodyAtributo, String idAtributo, String valorTipo, String valorTipoSeg, String valorClasSeg) {
 		
 		this.bien = ("{" + 
 				"\"classId\": " + idClase + "," + 
@@ -28,7 +30,7 @@ public class Alta_Bien {
 				"\"active\": false," + 
 				"\"attribute\": " + tipificacion + "," + 
 				"\"booleanValue\": false," + 
-				"\"idAttribute\": 1," + 
+				"\"idAttribute\": " + idTipificacion + "," + 
 				"\"idTableValue\": " + valorTipo + "," + 
 				"\"optionValue\": null," + 
 				"\"modificable\": false," + 
@@ -40,7 +42,7 @@ public class Alta_Bien {
 				"\"active\": false," + 
 				"\"attribute\": " + patentable + "," + 
 				"\"booleanValue\": false," + 
-				"\"idAttribute\": 2," + 
+				"\"idAttribute\": " + idPatentable + "," + 
 				"\"idTableValue\": null," + 
 				"\"optionValue\": null," + 
 				"\"modificable\": true," + 
@@ -52,7 +54,7 @@ public class Alta_Bien {
 				"\"active\": false," + 
 				"\"attribute\": " + semaforo + "," + 
 				"\"booleanValue\": false," + 
-				"\"idAttribute\": 3," + 
+				"\"idAttribute\": " + idSemaforo + "," + 
 				"\"idTableValue\": null," + 
 				"\"optionValue\": null," + 
 				"\"modificable\": false," + 
@@ -64,13 +66,37 @@ public class Alta_Bien {
 				"\"active\": false," + 
 				"\"attribute\": " + iva + "," + 
 				"\"booleanValue\": false," + 
-				"\"idAttribute\": 4," + 
+				"\"idAttribute\": " + idIva + "," + 
 				"\"idTableValue\": null," + 
 				"\"optionValue\": null," + 
 				"\"modificable\": true," + 
 				"\"defineVersion\": false," + 
 				"\"versionOrder\": 0," + 
 				"\"textValue\": \"21\"" + 
+				"}," +
+				"{" + 
+				"\"active\": false," + 
+				"\"attribute\": " + tipoSeguro + "," + 
+				"\"booleanValue\": false," + 
+				"\"idAttribute\": " + idTipo + "," + 
+				"\"idTableValue\": " + valorTipoSeg + "," + 
+				"\"optionValue\": null," + 
+				"\"modificable\": true," + 
+				"\"defineVersion\": true," + 
+				"\"versionOrder\": 0," + 
+				"\"textValue\": \"\"" + 
+				"}," + 
+				"{" + 
+				"\"active\": false," + 
+				"\"attribute\": " + claseSeguro + "," + 
+				"\"booleanValue\": false," + 
+				"\"idAttribute\": " + idClasSeg + "," + 
+				"\"idTableValue\": " + valorClasSeg + "," + 
+				"\"optionValue\": null," + 
+				"\"modificable\": true," + 
+				"\"defineVersion\": true," + 
+				"\"versionOrder\": 0," + 
+				"\"textValue\": \"\"" + 
 				"}," + 
 				"{" + 
 				"\"active\": false," + 
