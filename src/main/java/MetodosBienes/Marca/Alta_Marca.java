@@ -1,6 +1,5 @@
 package MetodosBienes.Marca;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Alta_Marca {
@@ -11,7 +10,6 @@ public class Alta_Marca {
 	
 	public String setaltaMarca(int row) throws Exception {
 		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Bienes");
 		this.name = ExcelUtils.getCellData(row,8);
 		this.description = ExcelUtils.getCellData(row,7);
 		

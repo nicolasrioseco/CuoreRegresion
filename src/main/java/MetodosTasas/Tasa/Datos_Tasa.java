@@ -1,6 +1,5 @@
 package MetodosTasas.Tasa;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Datos_Tasa {
@@ -14,8 +13,6 @@ public class Datos_Tasa {
 	
 	
 	public String setTasa(int row) throws Exception{
-		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Tasas");
 		
 		this.moneda = ExcelUtils.getCellData(row,1);
 		this.tipo = ExcelUtils.getCellData(row,0);

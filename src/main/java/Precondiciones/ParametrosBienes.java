@@ -19,7 +19,6 @@ import MetodosBienes.Marca.AsociarMarca;
 import MetodosBienes.Modelo.Datos_Modelo;
 import MetodosBienes.SubClase.Datos_SubClase;
 import io.restassured.response.Response;
-import utility.Constant;
 import utility.ExcelUtils;
 
 
@@ -58,6 +57,7 @@ public class ParametrosBienes {
 		Datos_Atributo datos_Atributos = new Datos_Atributo();
 		String atributo_post = datos_Atributos.setdatos_atributo(row);
 		ParametrosBienes.row = row;
+		System.out.println(atributo_post);
 		ParametrosBienes.bodyAtributo = 
 				given()
 				.contentType("application/json")
@@ -268,7 +268,6 @@ public class ParametrosBienes {
 
 	public void TareaAnalisisBienPorActivos() throws Exception {
 
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Bienes");
 		ParametrosBienes.valorTipo = ExcelUtils.getCellData(row,17);
 		ParametrosBienes.vidaUtil = ExcelUtils.getCellData(row,19);
 

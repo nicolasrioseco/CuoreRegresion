@@ -1,6 +1,5 @@
 package Impuestos;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Datos_confImpuestos {
@@ -19,9 +18,6 @@ public class Datos_confImpuestos {
 		
 //		Periodicidad:
 //		15 -> Quincenal, 30 -> Mensual
-		
-		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Impuestos");
 		
 		int idProv = (int) ExcelUtils.getCellDataint(row,7);
 		String provincia = ExcelUtils.getCellData(row,0);

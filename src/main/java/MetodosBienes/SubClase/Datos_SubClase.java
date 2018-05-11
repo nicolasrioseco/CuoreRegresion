@@ -1,6 +1,5 @@
 package MetodosBienes.SubClase;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Datos_SubClase {
@@ -17,7 +16,6 @@ public class Datos_SubClase {
 			String idTipificacion, String bodyPatentable, String idPatentable, String bodySemaforo, String idSemaforo, String bodyIva, 
 			String idIva, String tipoSeguro, String idTipoSeg, String claseSeguro, String idClasSeg) throws Exception{
 		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Bienes");
 		this.name = ExcelUtils.getCellData(row,5);
 		this.description = ExcelUtils.getCellData(row,6);
 		this.valorVersion = ExcelUtils.getCellData(row,2);
@@ -31,12 +29,10 @@ public class Datos_SubClase {
 				bodyIva, idIva,	tipoSeguro, idTipoSeg, claseSeguro, idClasSeg, valorTipoSeg, valorClasSeg);;
 		String post = subClase.getSubClase();
 		
-		return post;
-		
+		return post;	
 	}
 	
 	public String getName() {
 		return name;
 	}
-	
 }

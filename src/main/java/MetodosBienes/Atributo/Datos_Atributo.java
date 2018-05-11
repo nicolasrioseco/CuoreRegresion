@@ -1,6 +1,5 @@
 package MetodosBienes.Atributo;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Datos_Atributo {
@@ -10,8 +9,7 @@ public class Datos_Atributo {
 
 
 	public String setdatos_atributo(int row) throws Exception{
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Bienes");
-
+		
 		this.nombre = ExcelUtils.getCellData(row,0);
 		this.descripcion = ExcelUtils.getCellData(row,1);
 

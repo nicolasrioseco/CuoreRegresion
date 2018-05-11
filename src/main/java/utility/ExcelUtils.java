@@ -2,6 +2,7 @@ package utility;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -10,32 +11,41 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtils {
 
-	private static Sheet ExcelWSheet;
-
-	private static XSSFWorkbook ExcelWBook;
+	public static Workbook Workbook;
 
 	private static org.apache.poi.ss.usermodel.Cell Cell;
 
 	private static Row Row;
 
+	private static Sheet ExcelWSheet;
+
 	//This method is to set the File path and to open the Excel file, Pass Excel Path and Sheetname as Arguments to this method
 
-	public static void setExcelFile(String Path,String SheetName) throws Exception {
+	public static void setExcelInicial(String Path) throws Exception {
 
 		try {
 
-			// Open the Excel file
-
+			System.out.println("Abriendo el documento TestData.xlsx");
 			FileInputStream ExcelFile = new FileInputStream(Path);
 
-			// Access the required test data sheet
+			System.out.println("Accediendo al documento");
+			System.out.println("Esta tarea puede demorar unos segundos");
+			ExcelUtils.Workbook  = new XSSFWorkbook(ExcelFile);
+			System.out.println("Acceso establecido exitosamente");
+			System.out.println("\n*************************************************************************\n");
+		} catch (Exception e){
 
-			@SuppressWarnings("resource")
-			Workbook Workbook  = new XSSFWorkbook(ExcelFile);
+			throw (e);
 
+		}
+
+	}
+	
+	public static void setExcelFile(String SheetName) throws Exception {
+
+		try {
+			
 			ExcelWSheet = Workbook.getSheet(SheetName);
-
-
 		} catch (Exception e){
 
 			throw (e);
@@ -107,7 +117,7 @@ public class ExcelUtils {
 
 			FileOutputStream fileOut = new FileOutputStream(Constant.Path_TestData + Constant.File_TestData);
 
-			ExcelWBook.write(fileOut);
+			Workbook.write(fileOut);
 
 			fileOut.flush();
 

@@ -1,6 +1,5 @@
 package MetodosBienes.Bienes;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Datos_Bien {
@@ -9,8 +8,6 @@ public class Datos_Bien {
 							String patentable, String idPatentable, String semaforo, String idSemaforo, String iva, String idIva, String tipoSeguro, 
 							String idTipo, String claseSeguro, String idClasSeg, String bodyAtributo, String idAtributo, int row) throws Exception {
 		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Bienes");
-
 		String nameAtributo = ExcelUtils.getCellData(row,0);
 		String valorVersion = ExcelUtils.getCellData(row,2);
 		String nameClase = ExcelUtils.getCellData(row,3);

@@ -1,6 +1,5 @@
 package MetodosTasas.TasaTTR;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Datos_TTR {
@@ -11,11 +10,8 @@ public class Datos_TTR {
 		public String multiplicador;
 	
 		public String setTasaTTR(int i, int row) throws Exception{
-
-			ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Tasas");
 			
 			int dador = (int) ExcelUtils.getCellDataint(row,15); //1=TCC, 2=BC
-
 			String moneda = ExcelUtils.getCellData(row,1);
 			String tipo = ExcelUtils.getCellData(row,0);
 			String nameSubT = ExcelUtils.getCellData(row,2);

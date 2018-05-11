@@ -25,23 +25,18 @@ public class Ejecutor_Api{
 	public static ArrayList<String> proveedores = new ArrayList<String>();
 	public static String [][] bienes;
 	public static ArrayList<String> acuerdos = new ArrayList<String>();
-	public static ArrayList<String> seleccion = new ArrayList<String>();
 
 	@OrderedTest(order=1)
 	@Test
 	public void setInicial() throws Exception {
-		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Tareas");
-		seleccion.add(0,ExcelUtils.getCellData(5,2));//proveedores -> habilita solo Proveedores
-		seleccion.add(1,ExcelUtils.getCellData(6,2));//Bienes -> habilita solo Bienes
-		seleccion.add(2,ExcelUtils.getCellData(7,2));//Tasas -> habilita solo Tasas
-		seleccion.add(3,ExcelUtils.getCellData(8,2));//Impuestos -> habilita solo Impuestos
-		seleccion.add(4,ExcelUtils.getCellData(9,2));//Acuerdos de Servicios -> habilita Bienes, Proveedores y Acuerdo
-		seleccion.add(5,ExcelUtils.getCellData(10,2));//Servicios -> habilita Bienes, Acuerdos y Servicios
-		seleccion.add(6,ExcelUtils.getCellData(11,2));//Productos -> habilita Bienes, Tasas y Producto 
-		
+		System.out.println("\n*************************Inicializando Ejecución*************************\n");
+		ExcelUtils.setExcelInicial(Constant.Path_TestData + Constant.File_TestData);
+		System.out.println(">Iniciando validación de Atributos Cabeceras no parametrizados");
 		AtributoInicial setAtributoInicial = new AtributoInicial();
-		setAtributoInicial.atributosIniciales();
+		setAtributoInicial.atributosInicialesTipoSeg();
+		setAtributoInicial.atributosInicialesClassSeg();
+		System.out.println("--->Finalizó exitosamente la validación de Atributos Cabecera no parametrizados");
+		System.out.println("\n*************************************************************************\n");
 	}
 	
 	
@@ -49,21 +44,20 @@ public class Ejecutor_Api{
 	@OrderedTest(order=2)
 	@Test
 	public void metodosAltaProveedor() throws Exception {
-
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Proveedor");
+		System.out.println("********************Inicializando Alta  de Proveedores********************\n");
+		ExcelUtils.setExcelFile("Proveedor");
 		int registros = (int) ExcelUtils.getCellDataint(3,9);
 		int i;
-
-		if(registros != 0 && (seleccion.get(0).contains("Si"))) {
-
+		if(registros != 0) {
 			for (i= 0; i < (registros); i++) {
 				int row = (i+3);
 				ParametrosProveedores setParametros = new ParametrosProveedores();
-				proveedores.add(i, setParametros.setProveedores(row));
+				String proveedor = setParametros.setProveedores(row);
+				proveedores.add(i, proveedor);
 				System.out.println("> Se dió de alta el " + (row - 2) + "º Proveedor de " + registros);
 			}System.out.println("\n*************************************************************************\n");
 		}else {
-			System.out.println("No hay Proveedores para dar de alta");
+			System.out.println("> No hay Proveedores para dar de alta");
 			System.out.println("\n*************************************************************************\n");
 		}
 	}
@@ -72,12 +66,12 @@ public class Ejecutor_Api{
 	@OrderedTest(order=3)
 	@Test
 	public void metodosAltaBienes() throws Exception {
-
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Bienes");
+		System.out.println("**********************Inicializando Alta  de Bienes**********************\n");
+		ExcelUtils.setExcelFile("Bienes");
 		int registros = (int) ExcelUtils.getCellDataint(3,15);
 		int i;
 
-		if(registros != 0 && (seleccion.get(1).contains("Si"))) {
+		if(registros != 0) {
 
 			//Genero matriz
 			bienes = new String [registros][4];
@@ -87,15 +81,22 @@ public class Ejecutor_Api{
 				ParametrosBienes setParametros = new ParametrosBienes();
 				setParametros.atributo(row);
 				setParametros.extraerAtributos();
+				System.out.println("> Se generó el " + (row-2) + "º Atributo de " + registros );
 				bienes[i][0] = setParametros.clase();
+				System.out.println("> Se generó la " + (row-2) + "º Clase de " + registros );
 				bienes[i][1] = setParametros.subClase();
+				System.out.println("> Se generó la " + (row-2) + "º SubClase de " + registros );
 				bienes[i][2] = setParametros.marca();
+				System.out.println("> Se generó la " + (row-2) + "º Marca Asociada de " + registros );
 				setParametros.modelo();
+				System.out.println("> Se generó el " + (row-2) + "º Modelo de " + registros );
 				setParametros.extraerModel();
 				bienes[i][3] = setParametros.bien();
+				System.out.println("> Se generó el " + (row-2) + "º Bien de " + registros );
 				setParametros.JBPMBienes();
-				System.out.println("> Se generó y aprobó el " + (row-2) + "º Bien de " + registros + ".\n--->Generando su Clase, Subclase, Marca Asociada y Modelo<---");
-			}System.out.println("\n*************************************************************************\n");
+				System.out.println("> Se aprobó el " + (row-2) + "º Bien de " + registros );
+				System.out.println("\n*************************************************************************\n");
+			}
 		}else {
 			System.out.println("\nNo hay Bienes para dar de alta");
 			System.out.println("\n*************************************************************************\n");
@@ -107,13 +108,12 @@ public class Ejecutor_Api{
 	@OrderedTest(order=4)
 	@Test
 	public void metodosAltaTasas() throws Exception {
-
-
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Tasas");
+		System.out.println("**********************Inicializando Alta de Tasas**********************\n)");
+		ExcelUtils.setExcelFile("Tasas");
 		int registros = (int) ExcelUtils.getCellDataint(3,16);
 		int i;
 
-		if(registros != 0 && (seleccion.get(2).contains("Si"))) {
+		if(registros != 0) {
 
 			for (i= 0; i < (registros); i++) {
 				int row = (i+3);
@@ -123,7 +123,6 @@ public class Ejecutor_Api{
 					setParametros.tasaVariable(row);
 					setParametros.tasaTTR(row);
 					System.out.println("> Se dió de alta la " + (row-2) + "º Tasa de " + registros + ".\n--->Generando su SubTasa, Tasa Variable y sus Tasas TTR<---");
-					System.out.println("\n*************************************************************************\n");
 				}else {
 					setParametros.tasaTTR(row);
 					System.out.println("> Se dió de alta la " + (row-2) + "º Tasa de " + registros + ".\n--->Generando su SubTasa y sus Tasas TTR<---");
@@ -138,13 +137,12 @@ public class Ejecutor_Api{
 	@OrderedTest(order=5)
 	@Test
 	public void metodosConfigurarImpuestos() throws Exception {
-
-
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Impuestos");
+		System.out.println("*********************Inicializando Alta de Impuestos*********************\n)");
+		ExcelUtils.setExcelFile("Impuestos");
 		int registros = (int) ExcelUtils.getCellDataint(3,6);
 		int i;
 
-		if(registros != 0 && (seleccion.get(3).contains("Si"))) {
+		if(registros != 0) {
 
 			for (i= 0; i < (registros); i++) {
 				int row = (i+3);
@@ -161,11 +159,11 @@ public class Ejecutor_Api{
 	@OrderedTest(order=6)
 	@Test
 	public void metodosAltaAcuerdo() throws Exception {
-
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"AcuerdoServicio");
+		System.out.println("***************Inicializando Alta de Acuerdos de Servicios***************\n)");
+		ExcelUtils.setExcelFile("AcuerdoServicio");
 		int registros = (int) ExcelUtils.getCellDataint(3,7);
 		int i;
-		if(registros != 0 && (seleccion.get(4).contains("Si"))) {
+		if(registros != 0) {
 
 			for (i= 0; i < (registros); i++) {
 				int row = (i+3);
@@ -184,13 +182,12 @@ public class Ejecutor_Api{
 	@OrderedTest(order=7)
 	@Test
 	public void metodosServicio() throws Exception {
-
-
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Servicios");
+		System.out.println("***********Inicializando Alta de Servicios***********\n)");
+		ExcelUtils.setExcelFile("Servicios");
 		int registros = (int) ExcelUtils.getCellDataint(3,6);
 		int i;
 
-		if(registros != 0 && (seleccion.get(5).contains("Si"))) {
+		if(registros != 0) {
 			for (i= 0; i < (registros); i++) {
 				int row = (i+3);
 				int seleccionBien = (int) ExcelUtils.getCellDataint(row,13);
@@ -210,11 +207,11 @@ public class Ejecutor_Api{
 	@OrderedTest(order=8)
 	@Test
 	public void metodosProducto() throws Exception {
-
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Productos");
+		System.out.println("***********Inicializando Alta de Productos***********\n)");
+		ExcelUtils.setExcelFile("Productos");
 		int registros = (int) ExcelUtils.getCellDataint(3,10);
 		int i;
-		if(registros != 0 && (seleccion.get(6).contains("Si"))) {
+		if(registros != 0) {
 
 			for (i= 0; i < (registros); i++) {
 				int row = (i+3);
