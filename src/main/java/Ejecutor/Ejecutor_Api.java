@@ -108,7 +108,7 @@ public class Ejecutor_Api{
 	@OrderedTest(order=4)
 	@Test
 	public void metodosAltaTasas() throws Exception {
-		System.out.println("**********************Inicializando Alta de Tasas**********************\n)");
+		System.out.println("************************Inicializando Alta de Tasas************************\n)");
 		ExcelUtils.setExcelFile("Tasas");
 		int registros = (int) ExcelUtils.getCellDataint(3,16);
 		int i;
