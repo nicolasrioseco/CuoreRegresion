@@ -5,20 +5,13 @@ public class Alta_Tasa {
 	
 	private String altaT;
 
-	public void setAltaT(String moneda, String tipo, String nameSubT, String multiplicador, String tope) {
+	public void setAltaT(String moneda, String tipo, int idTipo, String nameSubT, String multiplicador, String tope) {
 		
-		int id;
-		
-		if(tipo=="Fija") {
-			id=1;
-		}else {
-			id=2;
-		}
-		
+
 		this.altaT = ("{" + 
 				"\"rateTypeMoney\": \""+ moneda + "\"," + 
 				"\"rateTypeRate\": {" + 
-				"\"id\": "+ id + "," + 
+				"\"id\": "+ idTipo + "," + 
 				"\"description\": \"" + tipo + "\"" + 
 				"}," + 
 				"\"rateSubTypeRate\": \"" + nameSubT +"\"," + 

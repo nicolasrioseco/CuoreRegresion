@@ -1,14 +1,11 @@
 package MetodosTasas.TasaVariable;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Datos_TasaVariable {
 
 	
-	public String setTasaVariable(String bodyTasa, int row) throws Exception{
-		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"Tasas");
+	public String setTasaVariable(String bodyTasa, int row) throws Exception{		
 		
 		String bodyTasa1 = bodyTasa.split("\\[\\],")[0];
 		String bodyTasa2 = bodyTasa.split("\\[\\],")[1];

@@ -1,6 +1,5 @@
 package Proveedor;
 
-import utility.Constant;
 import utility.ExcelUtils;
 
 public class Datos_AcuerdoServicio {
@@ -11,8 +10,6 @@ public class Datos_AcuerdoServicio {
 	public String observaciones;
 
 	public String setDatosAcuerdo(int row, String Defoult_URL, String token, String bodyBien, String bodyProveedor) throws Exception {
-		
-		ExcelUtils.setExcelFile(Constant.Path_TestData + Constant.File_TestData,"AcuerdoServicio");
 		
 		this.nombre = ExcelUtils.getCellData(row,0);
 		this.costo = ExcelUtils.getCellDataint(row,1);

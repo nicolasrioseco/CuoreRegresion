@@ -23,7 +23,6 @@ public class ParametrosProveedores {
 	public Response responseAcuerdo;
 
 	public String setProveedores(int row) throws Exception{
-
 		Datos_Proveedor datos_Proveedor = new Datos_Proveedor();
 		String proveedor_post = datos_Proveedor.setdatosProveedor(row);
 		String proveedor=
@@ -57,19 +56,18 @@ public class ParametrosProveedores {
 		return acuerdo;
 	}
 
-//	public void bpmAcuerdoCreate() throws Exception{
-//
-//		this.bpmAcuerdo = new Alta_AcuerdoServicio();
-//		this.bpmAcuerdo_post = bpmAcuerdo.setBPMacuerdoCreate(idAcuerdo);;
-//		this.idProcessAcuerdo=
-//				given()
-//				.contentType("application/json")
-//				.headers("x-auth-token",token)
-//				.body(bpmAcuerdo_post)
-//				.when().post(Defoult_URL+"bpm/create").getBody().asString();
-//		System.out.println(idProcessAcuerdo);
-//		
-//	}
+	public void bpmAcuerdoCreate() throws Exception{
+
+		ParametrosProveedores.bpmAcuerdo = new Alta_AcuerdoServicio();
+		ParametrosProveedores.bpmAcuerdo_post = bpmAcuerdo.setBPMacuerdoCreate(idAcuerdo);;
+		ParametrosProveedores.idProcessAcuerdo=
+				given()
+				.contentType("application/json")
+				.headers("x-auth-token",token)
+				.body(bpmAcuerdo_post)
+				.when().post(Defoult_URL+"bpm/create").getBody().asString();
+		
+	}
 //	
 //	public void extractValuesAcuerdo() {
 //

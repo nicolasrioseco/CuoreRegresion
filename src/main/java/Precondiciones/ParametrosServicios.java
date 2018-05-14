@@ -65,8 +65,6 @@ public class ParametrosServicios {
 		.assertThat().statusCode(201);
 		
 		String postAprobarServicio = aprobarTarea.setAprobarServicio(bodyServicio);
-		System.out.println("El body del Servicio es: " + bodyServicio);
-		System.out.println("El post para Aprobar es: " + postAprobarServicio);
 		given()
 		.contentType("application/json")
 		.headers("x-auth-token",token)

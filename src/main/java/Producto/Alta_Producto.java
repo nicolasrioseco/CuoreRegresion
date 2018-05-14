@@ -1,28 +1,39 @@
 package Producto;
 
 public class Alta_Producto {
-	
-	private String altaProducto;
-	private String dador;
-	
-	public void setAltaProducto(String dador) {
-		
-		
-		if(dador=="Comafi") {
-			this.dador = ("\"{" + 
-					"\"applyImpBenefit\": true," + 
-					"\"lessorId\\\": 1," + 
-					"\"lessorName\": \"TCC\"" + 
-					"}");
+
+	public static String altaProducto;
+
+	public void setAltaProducto(String nombreProducto, String feeDador, String feeImpoDador, String bodyBien, 
+			int valorFeeAdm, int valorFeeImpo, int tna, String bodyTasa) {
+
+		String bodyBien1 = bodyBien.split("\"status\":\"Borrador\"")[0];
+
+		String Comafi = ("{" + 
+				"\"applyImpBenefit\": false," + 
+				"\"lessorId\": 2," + 
+				"\"lessorName\": \"COMAFI\"" + 
+				"}");
+
+		String TCC = ("{" + 
+				"\"applyImpBenefit\": true," + 
+				"\"lessorId\": 1," + 
+				"\"lessorName\": \"TCC\"" + 
+				"}");
+
+		if(feeDador=="Comafi") {
+			feeDador = Comafi;
 		}else {
-			this.dador = ("\"{" + 
-					"\"applyImpBenefit\": false," + 
-					"\"lessorId\\\": 2," + 
-					"\"lessorName\": \"COMAFI\"" + 
-					"}");
+			feeDador = TCC;
 		}
-		
-		this.altaProducto = ("{" + 
+
+		if(feeImpoDador=="Comafi") {
+			feeImpoDador = Comafi;
+		}else {
+			feeImpoDador = TCC;
+		}
+
+		Alta_Producto.altaProducto = ("{" + 
 				"\"bankings\": []," + 
 				"\"subBankings\": []," + 
 				"\"segments\": []," + 
@@ -44,26 +55,7 @@ public class Alta_Producto {
 				"\"id\": 4" + 
 				"}" + 
 				"]," + 
-				"\"provinces\": [" + 
-				"{" + 
-				"\"codCountry\": \"AR\"," + 
-				"\"codProvincia\": \"AR-B\"," + 
-				"\"id\": 1," + 
-				"\"provincia\": \"Provincia de Buenos Aires\"" + 
-				"}," + 
-				"{" + 
-				"\"codCountry\": \"AR\"," + 
-				"\"codProvincia\": \"AR-C\"," + 
-				"\"id\": 2," + 
-				"\"provincia\": \"Capital Federal\"" + 
-				"}," + 
-				"{" + 
-				"\"codCountry\": \"AR\"," + 
-				"\"codProvincia\": \"AR-X\"," + 
-				"\"id\": 6," + 
-				"\"provincia\": \"C贸rdoba\"" + 
-				"}" + 
-				"]," + 
+				"\"provinces\": []," + 
 				"\"cities\": []," + 
 				"\"holders\": [" + 
 				"{" + 
@@ -73,6 +65,10 @@ public class Alta_Producto {
 				"{" + 
 				"\"description\": \"Comafi\"," + 
 				"\"id\": 2" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Terceros\"," + 
+				"\"id\": 3" + 
 				"}" + 
 				"]," + 
 				"\"destinations\": [" + 
@@ -89,6 +85,14 @@ public class Alta_Producto {
 				"{" + 
 				"\"description\": \"Nuevo\"," + 
 				"\"id\": 1" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Usado\"," + 
+				"\"id\": 2" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"De Stock\"," + 
+				"\"id\": 3" + 
 				"}" + 
 				"]," + 
 				"\"origins\": [" + 
@@ -101,859 +105,485 @@ public class Alta_Producto {
 				"\"id\": 2" + 
 				"}" + 
 				"]," + 
-				"\"goods\": [{ " + 
-				"\"id\": 6, " + 
-				"\"classId\": 1, " + 
-				"\"className\": \"Automotriz\", " + 
-				"\"classDescription\": \"Bienes de clase automotriz\", " + 
-				"\"subclassId\": 1063, " + 
-				"\"subclassName\": \"Utilitario Deportivo SUV\", " + 
-				"\"subclassDescription\": \"Bienes de subclase utilitario deportivo suv\", " + 
-				"\"brandId\": 110326, " + 
-				"\"brandName\": \"Bmw\", " + 
-				"\"brandDescription\": \"Bienes de marca Bmw\", " + 
-				"\"modelId\": 215293, " + 
-				"\"modelName\": \"X1\", " + 
-				"\"modelDescription\": \"Bienes modelo X1\", " + 
-				"\"version\": \"Infoauto: Ford Fiesta KD Titanium 5 puertas\", " + 
-				"\"creationDate\": 1524233965362, " + 
-				"\"status\": \"Borrador\", " + 
-				"\"usefulLife\": 0, " + 
-				"\"type\": 0, " + 
-				"\"typification\": 0, " + 
-				"\"attributes\": [ " + 
-				"{ " + 
-				"\"id\": 34, " + 
-				"\"attribute\": { " + 
-				"\"id\": 1, " + 
-				"\"name\": \"Tipificaci贸n\", " + 
-				"\"description\": \"Tipificaci贸n\", " + 
-				"\"attributeValueType\": { " + 
-				"\"id\": 4, " + 
-				"\"description\": \"Tabla\", " + 
-				"\"code\": \"TABLA\" " + 
-				"}, " + 
-				"\"attributeFormat\": null, " + 
-				"\"status\": true, " + 
-				"\"options\": [ " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Aerodinos en general (aviones, hidroaviones, helic贸pteros)\", " + 
-				"\"uid\": 1, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Aguadas y bebederos\", " + 
-				"\"uid\": 2, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Alambradas y tranqueras\", " + 
-				"\"uid\": 3, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Barcos\", " + 
-				"\"uid\": 4, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Contenedores (inclu铆dos contenedores cisternas y contenedores dep贸sitos para cualquier medio de transporte)\", " + 
-				"\"uid\": 5, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Contenedores, excepto silos (toneles, tambores)\", " + 
-				"\"uid\": 6, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Cosechadoras (granos, oleaginosas y forrajes)\", " + 
-				"\"uid\": 7, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Edificios\", " + 
-				"\"uid\": 8, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Embarcaciones de recreo\", " + 
-				"\"uid\": 9, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Equipos de computaci贸n y accesorios de inform谩tica\", " + 
-				"\"uid\": 10, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Equipos y maquinarias de arrastre (sembradoras, discos, arados de reja, arados de cinceles, escardadores, etc)\", " + 
-				"\"uid\": 11, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Equipos, aparatos e instrumental de precisi贸n de uso t茅cnico y profesional\", " + 
-				"\"uid\": 12, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Equipos, aparatos e instrumental de uso t茅cnico y profesional\", " + 
-				"\"uid\": 13, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Ferrocarriles (locomotoras y vagones)\", " + 
-				"\"uid\": 14, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Galpones\", " + 
-				"\"uid\": 15, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Hacienda reproductora\", " + 
-				"\"uid\": 16, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Herramientas\", " + 
-				"\"uid\": 17, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Instalaciones\", " + 
-				"\"uid\": 18, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Maquinarias y equipos\", " + 
-				"\"uid\": 19, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Molinos\", " + 
-				"\"uid\": 20, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Muebles y utiles\", " + 
-				"\"uid\": 21, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Pulverizadoras motopropulsadas\", " + 
-				"\"uid\": 22, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Rodados (autom贸viles, camiones, acoplados, autoelevadores, gr煤as, m谩quinas viales y motocicletas)\", " + 
-				"\"uid\": 23, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Rotoenfardadoras\", " + 
-				"\"uid\": 24, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Silos\", " + 
-				"\"uid\": 25, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Tarros tambo\", " + 
-				"\"uid\": 26, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Tractores\", " + 
-				"\"uid\": 27, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Software\", " + 
-				"\"uid\": 28, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"} " + 
-				"], " + 
-				"\"applyAsset\": false, " + 
-				"\"systemAttribute\": false, " + 
-				"\"level\": 2, " + 
-				"\"entity\": { " + 
-				"\"idEntity\": 1, " + 
-				"\"name\": \"Tipificaci贸n\", " + 
-				"\"entityTableName\": \"t_com_equipmentClassification\", " + 
-				"\"entityCode\": \"description\", " + 
-				"\"entityId\": \"idEquipmentClassification\" " + 
-				"}, " + 
-				"\"key\": null " + 
-				"}, " + 
-				"\"idAttribute\": 1, " + 
-				"\"active\": false, " + 
-				"\"textValue\": \"\", " + 
-				"\"booleanValue\": false, " + 
-				"\"idTableValue\": 23, " + 
-				"\"optionValueId\": null, " + 
-				"\"optionValue\": null, " + 
-				"\"modificable\": false, " + 
-				"\"defineVersion\": false, " + 
-				"\"versionOrder\": 0 " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": 35, " + 
-				"\"attribute\": { " + 
-				"\"id\": 2, " + 
-				"\"name\": \"Patentable\", " + 
-				"\"description\": \"SI /NO\", " + 
-				"\"attributeValueType\": { " + 
-				"\"id\": 3, " + 
-				"\"description\": \"Si/No\", " + 
-				"\"code\": \"BOOLEAN\" " + 
-				"}, " + 
-				"\"attributeFormat\": null, " + 
-				"\"status\": true, " + 
-				"\"options\": [], " + 
-				"\"applyAsset\": false, " + 
-				"\"systemAttribute\": false, " + 
-				"\"level\": 2, " + 
-				"\"entity\": null, " + 
-				"\"key\": null " + 
-				"}, " + 
-				"\"idAttribute\": 2, " + 
-				"\"active\": false, " + 
-				"\"textValue\": \"\", " + 
-				"\"booleanValue\": true, " + 
-				"\"idTableValue\": null, " + 
-				"\"optionValueId\": null, " + 
-				"\"optionValue\": null, " + 
-				"\"modificable\": false, " + 
-				"\"defineVersion\": false, " + 
-				"\"versionOrder\": 0 " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": 36, " + 
-				"\"attribute\": { " + 
-				"\"id\": 3, " + 
-				"\"name\": \"Semaforo\", " + 
-				"\"description\": \"SI/NO (Rojo/Verde) cuando est谩 en SI implica que al cotizar este bien debe pasar por la supervisi贸n de activos\", " + 
-				"\"attributeValueType\": { " + 
-				"\"id\": 3, " + 
-				"\"description\": \"Si/No\", " + 
-				"\"code\": \"BOOLEAN\" " + 
-				"}, " + 
-				"\"attributeFormat\": null, " + 
-				"\"status\": true, " + 
-				"\"options\": [], " + 
-				"\"applyAsset\": false, " + 
-				"\"systemAttribute\": false, " + 
-				"\"level\": 2, " + 
-				"\"entity\": null, " + 
-				"\"key\": null " + 
-				"}, " + 
-				"\"idAttribute\": 3, " + 
-				"\"active\": false, " + 
-				"\"textValue\": \"\", " + 
-				"\"booleanValue\": false, " + 
-				"\"idTableValue\": null, " + 
-				"\"optionValueId\": null, " + 
-				"\"optionValue\": null, " + 
-				"\"modificable\": false, " + 
-				"\"defineVersion\": false, " + 
-				"\"versionOrder\": 0 " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": 37, " + 
-				"\"attribute\": { " + 
-				"\"id\": 4, " + 
-				"\"name\": \"IVA %\", " + 
-				"\"description\": \"Porcentaje IVA %\", " + 
-				"\"attributeValueType\": { " + 
-				"\"id\": 1, " + 
-				"\"description\": \"Texto\", " + 
-				"\"code\": \"TEXTO\" " + 
-				"}, " + 
-				"\"attributeFormat\": { " + 
-				"\"id\": 4, " + 
-				"\"description\": \"Decimal\", " + 
-				"\"code\": \"DECIMAL\" " + 
-				"}, " + 
-				"\"status\": true, " + 
-				"\"options\": [], " + 
-				"\"applyAsset\": false, " + 
-				"\"systemAttribute\": false, " + 
-				"\"level\": 2, " + 
-				"\"entity\": null, " + 
-				"\"key\": null " + 
-				"}, " + 
-				"\"idAttribute\": 4, " + 
-				"\"active\": false, " + 
-				"\"textValue\": \"21\", " + 
-				"\"booleanValue\": false, " + 
-				"\"idTableValue\": null, " + 
-				"\"optionValueId\": null, " + 
-				"\"optionValue\": null, " + 
-				"\"modificable\": false, " + 
-				"\"defineVersion\": false, " + 
-				"\"versionOrder\": 0 " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": 38, " + 
-				"\"attribute\": { " + 
-				"\"id\": 301, " + 
-				"\"name\": \"Tipo de seguro\", " + 
-				"\"description\": \"descripcion tipo seguro\", " + 
-				"\"attributeValueType\": { " + 
-				"\"id\": 4, " + 
-				"\"description\": \"Tabla\", " + 
-				"\"code\": \"TABLA\" " + 
-				"}, " + 
-				"\"attributeFormat\": null, " + 
-				"\"status\": true, " + 
-				"\"options\": [ " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"AUTOMOTOR\", " + 
-				"\"uid\": 1, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"INGENIERIA\", " + 
-				"\"uid\": 2, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"AERONAUTICO\", " + 
-				"\"uid\": 3, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"} " + 
-				"], " + 
-				"\"applyAsset\": false, " + 
-				"\"systemAttribute\": false, " + 
-				"\"level\": 0, " + 
-				"\"entity\": { " + 
-				"\"idEntity\": 3, " + 
-				"\"name\": \"InsuranceType\", " + 
-				"\"entityTableName\": \"t_fin_InsuranceType\", " + 
-				"\"entityCode\": \"InsuranceType_Name\", " + 
-				"\"entityId\": \"InsuranceType_ID\" " + 
-				"}, " + 
-				"\"key\": null " + 
-				"}, " + 
-				"\"idAttribute\": 301, " + 
-				"\"active\": false, " + 
-				"\"textValue\": \"\", " + 
-				"\"booleanValue\": false, " + 
-				"\"idTableValue\": 1, " + 
-				"\"optionValueId\": null, " + 
-				"\"optionValue\": null, " + 
-				"\"modificable\": false, " + 
-				"\"defineVersion\": false, " + 
-				"\"versionOrder\": 0 " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": 39, " + 
-				"\"attribute\": { " + 
-				"\"id\": 302, " + 
-				"\"name\": \"Clase seguro\", " + 
-				"\"description\": \"desc clase seguro\", " + 
-				"\"attributeValueType\": { " + 
-				"\"id\": 4, " + 
-				"\"description\": \"Tabla\", " + 
-				"\"code\": \"TABLA\" " + 
-				"}, " + 
-				"\"attributeFormat\": null, " + 
-				"\"status\": true, " + 
-				"\"options\": [ " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"ACOPLADO\", " + 
-				"\"uid\": 1, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"AUTOGRUA\", " + 
-				"\"uid\": 2, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"AUTOMOVIL\", " + 
-				"\"uid\": 3, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"CAMION HASTA 4 TN\", " + 
-				"\"uid\": 4, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"CAMION MAS 4 TN\", " + 
-				"\"uid\": 5, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"PICK UP A\", " + 
-				"\"uid\": 6, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"PICK UP B\", " + 
-				"\"uid\": 7, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"COMUNICACIONES A1\", " + 
-				"\"uid\": 8, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"CONTRATISTA A1\", " + 
-				"\"uid\": 9, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"ELECTRONICOS A1\", " + 
-				"\"uid\": 10, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"MAQUINARIAS A1\", " + 
-				"\"uid\": 11, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"MEDICOS A1\", " + 
-				"\"uid\": 12, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"MUEBLES A1\", " + 
-				"\"uid\": 13, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"SOFTWARE\", " + 
-				"\"uid\": 14, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"NO ASEGURABLE\", " + 
-				"\"uid\": 15, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"CAMION MAS 4 TN ACCESORIOS\", " + 
-				"\"uid\": 16, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"ACOPLADO ACCESORIOS\", " + 
-				"\"uid\": 17, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"AUTOMOVIL ACCESORIOS\", " + 
-				"\"uid\": 18, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"CAMION HASTA 4TN ACCESORIOS\", " + 
-				"\"uid\": 19, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"PICK UP B ACCESORIOS\", " + 
-				"\"uid\": 20, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"AERONAVES\", " + 
-				"\"uid\": 21, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"GR 700EX\", " + 
-				"\"uid\": 22, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"PICK UP A ACCESORIOS\", " + 
-				"\"uid\": 23, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"} " + 
-				"], " + 
-				"\"applyAsset\": false, " + 
-				"\"systemAttribute\": false, " + 
-				"\"level\": 0, " + 
-				"\"entity\": { " + 
-				"\"idEntity\": 4, " + 
-				"\"name\": \"InsuranceClass\", " + 
-				"\"entityTableName\": \"t_fin_InsuranceClass\", " + 
-				"\"entityCode\": \"InsuranceClass_Name\", " + 
-				"\"entityId\": \"InsuranceClass_ID\" " + 
-				"}, " + 
-				"\"key\": null " + 
-				"}, " + 
-				"\"idAttribute\": 302, " + 
-				"\"active\": false, " + 
-				"\"textValue\": \"\", " + 
-				"\"booleanValue\": false, " + 
-				"\"idTableValue\": 3, " + 
-				"\"optionValueId\": null, " + 
-				"\"optionValue\": null, " + 
-				"\"modificable\": false, " + 
-				"\"defineVersion\": false, " + 
-				"\"versionOrder\": 0 " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": 40, " + 
-				"\"attribute\": { " + 
-				"\"id\": 300, " + 
-				"\"name\": \"Infoauto\", " + 
-				"\"description\": \"descripcion infoauto\", " + 
-				"\"attributeValueType\": { " + 
-				"\"id\": 1, " + 
-				"\"description\": \"Texto\", " + 
-				"\"code\": \"TEXTO\" " + 
-				"}, " + 
-				"\"attributeFormat\": { " + 
-				"\"id\": 2, " + 
-				"\"description\": \"Alfanum茅rico\", " + 
-				"\"code\": \"ALFANUMERICO\" " + 
-				"}, " + 
-				"\"status\": true, " + 
-				"\"options\": [ " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Aerodinos en general (aviones, hidroaviones, helic贸pteros)\", " + 
-				"\"uid\": 1, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Aguadas y bebederos\", " + 
-				"\"uid\": 2, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Alambradas y tranqueras\", " + 
-				"\"uid\": 3, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Barcos\", " + 
-				"\"uid\": 4, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Contenedores (inclu铆dos contenedores cisternas y contenedores dep贸sitos para cualquier medio de transporte)\", " + 
-				"\"uid\": 5, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Contenedores, excepto silos (toneles, tambores)\", " + 
-				"\"uid\": 6, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Cosechadoras (granos, oleaginosas y forrajes)\", " + 
-				"\"uid\": 7, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Edificios\", " + 
-				"\"uid\": 8, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Embarcaciones de recreo\", " + 
-				"\"uid\": 9, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Equipos de computaci贸n y accesorios de inform谩tica\", " + 
-				"\"uid\": 10, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Equipos y maquinarias de arrastre (sembradoras, discos, arados de reja, arados de cinceles, escardadores, etc)\", " + 
-				"\"uid\": 11, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Equipos, aparatos e instrumental de precisi贸n de uso t茅cnico y profesional\", " + 
-				"\"uid\": 12, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Equipos, aparatos e instrumental de uso t茅cnico y profesional\", " + 
-				"\"uid\": 13, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Ferrocarriles (locomotoras y vagones)\", " + 
-				"\"uid\": 14, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Galpones\", " + 
-				"\"uid\": 15, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Hacienda reproductora\", " + 
-				"\"uid\": 16, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Herramientas\", " + 
-				"\"uid\": 17, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Instalaciones\", " + 
-				"\"uid\": 18, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Maquinarias y equipos\", " + 
-				"\"uid\": 19, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Molinos\", " + 
-				"\"uid\": 20, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Muebles y utiles\", " + 
-				"\"uid\": 21, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Pulverizadoras motopropulsadas\", " + 
-				"\"uid\": 22, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Rodados (autom贸viles, camiones, acoplados, autoelevadores, gr煤as, m谩quinas viales y motocicletas)\", " + 
-				"\"uid\": 23, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Rotoenfardadoras\", " + 
-				"\"uid\": 24, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Silos\", " + 
-				"\"uid\": 25, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Tarros tambo\", " + 
-				"\"uid\": 26, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Tractores\", " + 
-				"\"uid\": 27, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"}, " + 
-				"{ " + 
-				"\"id\": null, " + 
-				"\"name\": \"Software\", " + 
-				"\"uid\": 28, " + 
-				"\"description\": null, " + 
-				"\"attributeDTO\": null " + 
-				"} " + 
-				"], " + 
-				"\"applyAsset\": false, " + 
-				"\"systemAttribute\": false, " + 
-				"\"level\": 0, " + 
-				"\"entity\": { " + 
-				"\"idEntity\": 1, " + 
-				"\"name\": \"Tipificaci贸n\", " + 
-				"\"entityTableName\": \"t_com_equipmentClassification\", " + 
-				"\"entityCode\": \"description\", " + 
-				"\"entityId\": \"idEquipmentClassification\" " + 
-				"}, " + 
-				"\"key\": null " + 
-				"}, " + 
-				"\"idAttribute\": 300, " + 
-				"\"active\": false, " + 
-				"\"textValue\": \"Ford Fiesta KD Titanium 5 puertas\", " + 
-				"\"booleanValue\": false, " + 
-				"\"idTableValue\": null, " + 
-				"\"optionValueId\": null, " + 
-				"\"optionValue\": null, " + 
-				"\"modificable\": false, " + 
-				"\"defineVersion\": true, " + 
-				"\"versionOrder\": 1 " + 
-				"} " + 
-				"] " + 
-				"} " + 
+				"\"goods\": [" + bodyBien1 + 
+				"\"status\": \"En An醠isis\"," + 
+				"\"usefulLife\": 0," + 
+				"\"type\": 0," + 
+				"\"typification\": 0," + 
+				"\"attributes\": []" + 
+				"}" + 
 				"]," + 
 				"\"services\": []," + 
-				"\"insurances\": []," + 
+				"\"insurances\": [" + 
+				"{" + 
+				"\"goods\": [" + bodyBien1 + 
+				"\"status\": \"En An醠isis\"," + 
+				"\"usefulLife\": 0," + 
+				"\"type\": 0," + 
+				"\"typification\": 0," + 
+				"\"attributes\": []" + 
+				"}" + 
+				"]," + 
+				"\"responsibles\": [" + 
+				"{" + 
+				"\"description\": \"TCC\"," + 
+				"\"id\": 2" + 
+				"}" + 
+				"]," + 
+				"\"carriers\": [" + 
+				"{" + 
+				"\"address\": null," + 
+				"\"contactEmail\": null," + 
+				"\"contactName\": null," + 
+				"\"country\": null," + 
+				"\"cuit\": null," + 
+				"\"description\": \"La Segunda Coop Ltda De Seguros\"," + 
+				"\"id\": 1," + 
+				"\"postalCode\": null," + 
+				"\"province\": null," + 
+				"\"website\": null" + 
+				"}," + 
+				"{" + 
+				"\"address\": null," + 
+				"\"contactEmail\": null," + 
+				"\"contactName\": null," + 
+				"\"country\": null," + 
+				"\"cuit\": null," + 
+				"\"description\": \"HSBC Seguros Sa.\"," + 
+				"\"id\": 2," + 
+				"\"postalCode\": null," + 
+				"\"province\": null," + 
+				"\"website\": null" + 
+				"}," + 
+				"{" + 
+				"\"address\": null," + 
+				"\"contactEmail\": null," + 
+				"\"contactName\": null," + 
+				"\"country\": null," + 
+				"\"cuit\": null," + 
+				"\"description\": \"Generali Corporate S.A.\"," + 
+				"\"id\": 3," + 
+				"\"postalCode\": null," + 
+				"\"province\": null," + 
+				"\"website\": null" + 
+				"}," + 
+				"{" + 
+				"\"address\": null," + 
+				"\"contactEmail\": null," + 
+				"\"contactName\": null," + 
+				"\"country\": null," + 
+				"\"cuit\": null," + 
+				"\"description\": \"ACE Seguros Sa.\"," + 
+				"\"id\": 4," + 
+				"\"postalCode\": null," + 
+				"\"province\": null," + 
+				"\"website\": null" + 
+				"}," + 
+				"{" + 
+				"\"address\": null," + 
+				"\"contactEmail\": null," + 
+				"\"contactName\": null," + 
+				"\"country\": null," + 
+				"\"cuit\": null," + 
+				"\"description\": \"CHUBB Argentina De Seguros S.A.\"," + 
+				"\"id\": 5," + 
+				"\"postalCode\": null," + 
+				"\"province\": null," + 
+				"\"website\": null" + 
+				"}," + 
+				"{" + 
+				"\"address\": null," + 
+				"\"contactEmail\": null," + 
+				"\"contactName\": null," + 
+				"\"country\": null," + 
+				"\"cuit\": null," + 
+				"\"description\": \"SANCOR Cooperativa De Seguros Limitada\"," + 
+				"\"id\": 6," + 
+				"\"postalCode\": null," + 
+				"\"province\": null," + 
+				"\"website\": null" + 
+				"}," + 
+				"{" + 
+				"\"address\": null," + 
+				"\"contactEmail\": null," + 
+				"\"contactName\": null," + 
+				"\"country\": null," + 
+				"\"cuit\": null," + 
+				"\"description\": \"ZURICH Argentina S.A.\"," + 
+				"\"id\": 7," + 
+				"\"postalCode\": null," + 
+				"\"province\": null," + 
+				"\"website\": null" + 
+				"}" + 
+				"]," + 
+				"\"policies\": [" + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"La Segunda Autos\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 1," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"La Segunda Autos\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 2," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"Hsbc Autos\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 3," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"ACE Ingenieria\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 4," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"ACE Ingenieria\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 5," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"Generali Autos\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 6," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"CHUBB Argentina - Bc\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 7," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"La Segunda Autos - Bc\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 8," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"La Segunda Autos - Tcc\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 9," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"GENERALI\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 10," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"CHUBB Argentina - Tcc\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 11," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"HSBC\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 12," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"PIPER Lv-Mcy\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 13," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"ZURICH Argentina S.A.\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 14," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"HSBC\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 17," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"ACE Seguros\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 16," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"HSBC La Buenos Aires\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 18," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"ZURICH - 2012-13\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 19," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"Poliza Aeronautica\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 20," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"Poliza Auto E Ingenieria\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 21," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"Automotor Hsbc\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 22," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"Terceros Completos\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 23," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}," + 
+				"{" + 
+				"\"currencyID\": null," + 
+				"\"description\": \"Terceros Completos Hsbc\"," + 
+				"\"endDate\": null," + 
+				"\"exchangeRate\": null," + 
+				"\"id\": 24," + 
+				"\"insuranceCarrierId\": null," + 
+				"\"insuranceTypeID\": null," + 
+				"\"renewed\": null," + 
+				"\"startDate\": null," + 
+				"\"status\": null" + 
+				"}" + 
+				"]," + 
+				"\"coverages\": [" + 
+				"{" + 
+				"\"description\": \"Terceros Completos\"," + 
+				"\"id\": 1," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Terceros Completos - Cargas Peligrosas\"," + 
+				"\"id\": 2," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Franquicia\"," + 
+				"\"id\": 3," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Franquicia - Carga Peligrosa\"," + 
+				"\"id\": 4," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Responsabillidad Civil\"," + 
+				"\"id\": 5," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Operativo\"," + 
+				"\"id\": 6," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Franquicia Del 4% Valor Asegurado\"," + 
+				"\"id\": 7," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Franquicia $ 900,- Empleado\"," + 
+				"\"id\": 8," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Terceros Completos Empleados\"," + 
+				"\"id\": 9," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo En Tierra, Vuelo Y/O Carreteo\"," + 
+				"\"id\": 10," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Franquicia $ 1100 Nacional\"," + 
+				"\"id\": 11," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Franquicia Empleado $ 1100\"," + 
+				"\"id\": 13," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"True Todo Riesgo Con Franquicia Del 4%\"," + 
+				"\"id\": 15," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Franquicia $ 2200\"," + 
+				"\"id\": 12," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Franquicia Empleado $ 2200\"," + 
+				"\"id\": 14," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Fcia $ 2.000.00\"," + 
+				"\"id\": 16," + 
+				"\"type\": null" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Todo Riesgo Con Fcia $ 3.000,00\"," + 
+				"\"id\": 17," + 
+				"\"type\": null" + 
+				"}" + 
+				"]," + 
+				"\"nodeInsurances\": []" + 
+				"}" + 
+				"]," + 
 				"\"contractTypes\": [" + 
 				"{" + 
 				"\"description\": \"Financiero\"," + 
@@ -974,16 +604,20 @@ public class Alta_Producto {
 				"\"description\": \"Software\"," + 
 				"\"id\": 4," + 
 				"\"ocKnown\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Inmuebles\"," + 
+				"\"id\": 5," + 
+				"\"ocKnown\": true" + 
 				"}" + 
 				"]," + 
 				"\"amortizations\": [" + 
 				"{" + 
-				"\"description\": \"Financiero\"," + 
-				"\"id\": 1," + 
-				"\"ocKnown\": false" + 
+				"\"description\": \"Sistema Franc閟\"," + 
+				"\"id\": 1" + 
 				"}," + 
 				"{" + 
-				"\"description\": \"Sistema Alem谩n\"," + 
+				"\"description\": \"Sistema Alem醤\"," + 
 				"\"id\": 2" + 
 				"}," + 
 				"{" + 
@@ -991,20 +625,9 @@ public class Alta_Producto {
 				"\"id\": 3" + 
 				"}" + 
 				"]," + 
-				"\"lessors\": [" + dador + 
-				"]," +
-				"\"gracePeriod\": null," + 
-				"\"gracePeriodEditable\": false," + 
-				"\"gracePeriodVisible\": false," + 
-				"\"hasInitialCanonCePercentageValueEnabled\": true," + 
-				"\"hasInitialCanonCeValueEnabled\": false," + 
-				"\"hasInitialCanonFirstFeeEnabled\": false," +
-				"\"hasTermOptionsEnabled\": true," + 
-				"\"contractTermOptions\": [" + 
-				"12," + 
-				"24," + 
-				"36" + 
-				"]," + 
+				"\"lessors\": [" + TCC + "," + Comafi + "]," + 
+				"\"hasTermOptionsEnabled\": false," + 
+				"\"contractTermOptions\": null," + 
 				"\"feePeriodicities\": [" + 
 				"{" + 
 				"\"description\": \"Mensual\"," + 
@@ -1023,18 +646,21 @@ public class Alta_Producto {
 				"\"id\": 4" + 
 				"}" + 
 				"]," + 
-				"\"productVrKpoItems\": []," + 
+				"\"productVrKpoItems\": [" + 
+				"{" + 
+				"\"termOption\": []," + 
+				"\"vrValue\": []," + 
+				"\"vrKpo\": []," + 
+				"\"associatedGood\": " + bodyBien1 + 
+				"\"status\": \"En An醠isis\"," + 
+				"\"usefulLife\": 0," + 
+				"\"type\": 0," + 
+				"\"typification\": 0," + 
+				"\"attributes\": []" + 
+				"}" + 
+				"}" + 
+				"]," + 
 				"\"channels\": [" + 
-				"{" + 
-				"\"description\": \"EDN\"," + 
-				"\"id\": 1," + 
-				"\"parentChannel\": null" + 
-				"}," + 
-				"{" + 
-				"\"description\": \"End User\"," + 
-				"\"id\": 7," + 
-				"\"parentChannel\": null" + 
-				"}," + 
 				"{" + 
 				"\"description\": \"Corporativa\"," + 
 				"\"id\": 9," + 
@@ -1042,7 +668,164 @@ public class Alta_Producto {
 				"\"description\": \"Comafi\"," + 
 				"\"id\": 2," + 
 				"\"parentChannel\": null" + 
-				"}" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"EDN\"," + 
+				"\"id\": 1," + 
+				"\"parentChannel\": null," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Comafi\"," + 
+				"\"id\": 2," + 
+				"\"parentChannel\": null," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"MEGRAS\"," + 
+				"\"id\": 10," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Comafi\"," + 
+				"\"id\": 2," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"PYMES\"," + 
+				"\"id\": 11," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Comafi\"," + 
+				"\"id\": 2," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"BANCA PRIVADA\"," + 
+				"\"id\": 12," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Comafi\"," + 
+				"\"id\": 2," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"MICRO\"," + 
+				"\"id\": 13," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Comafi\"," + 
+				"\"id\": 2," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"NYP (Negocios y Profesionales)\"," + 
+				"\"id\": 14," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Comafi\"," + 
+				"\"id\": 2," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Individuos\"," + 
+				"\"id\": 15," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Comafi\"," + 
+				"\"id\": 2," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"e-commerce\"," + 
+				"\"id\": 4," + 
+				"\"parentChannel\": null," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Web\"," + 
+				"\"id\": 16," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"e-commerce\"," + 
+				"\"id\": 4," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Mobile\"," + 
+				"\"id\": 17," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"e-commerce\"," + 
+				"\"id\": 4," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Vinculadas\"," + 
+				"\"id\": 6," + 
+				"\"parentChannel\": null," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"NUBI\"," + 
+				"\"id\": 18," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Vinculadas\"," + 
+				"\"id\": 6," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Provencred\"," + 
+				"\"id\": 19," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Vinculadas\"," + 
+				"\"id\": 6," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Cuota YA\"," + 
+				"\"id\": 20," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Vinculadas\"," + 
+				"\"id\": 6," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Crediclick\"," + 
+				"\"id\": 21," + 
+				"\"parentChannel\": {" + 
+				"\"description\": \"Vinculadas\"," + 
+				"\"id\": 6," + 
+				"\"parentChannel\": null" + 
+				"}," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"End User\"," + 
+				"\"id\": 7," + 
+				"\"parentChannel\": null," + 
+				"\"checked\": true" + 
+				"}," + 
+				"{" + 
+				"\"description\": \"Sucursal\"," + 
+				"\"id\": 8," + 
+				"\"parentChannel\": null," + 
+				"\"checked\": true" + 
 				"}" + 
 				"]," + 
 				"\"vendors\": []," + 
@@ -1051,24 +834,18 @@ public class Alta_Producto {
 				"\"minimumMargin\": 0," + 
 				"\"maximumMargin\": 99999," + 
 				"\"mipyme\": \"\"," + 
+				"\"feeLessor\": " + feeImpoDador + "," + 
+				"\"admFeeLessor\": " + feeDador + "," + 
 				"\"upFrontIVA\": {" + 
 				"\"description\": \"Financiado\"," + 
 				"\"id\": 1" + 
 				"}," + 
-				"\"feeLessor\": {" + 
-				"\"applyImpBenefit\": false," + 
-				"\"lessorId\": 2," + 
-				"\"lessorName\": \"COMAFI\"" + 
-				"}," + 
-				"\"admFeeLessor\": {" + 
-				"\"applyImpBenefit\": true," + 
-				"\"lessorId\": 1," + 
-				"\"lessorName\": \"TCC\"" + 
-				"}," + 
 				"\"contractCurrency\": {" + 
-				"\"description\": \"Dolares (U$S)\"," + 
-				"\"id\": 2000" + 
+				"\"description\": \"Pesos ($)\"," + 
+				"\"id\": 1000" + 
 				"}," + 
+				"\"validFrom\": \"2018-05-07T03:00:00.0Z\"," + 
+				"\"validUntil\": \"2018-12-31T03:00:00.0Z\"," + 
 				"\"appliesForPhysicalPerson\": true," + 
 				"\"contractMinTerm\": 12," + 
 				"\"contractMaxTerm\": 36," + 
@@ -1077,62 +854,38 @@ public class Alta_Producto {
 				"\"taxBenefitVisible\": true," + 
 				"\"rateTypeVisible\": true," + 
 				"\"rateSubtypeVisible\": true," + 
-				"\"initialCanonFirstFeeVisible\": true," +
-				"\"initialCanonFirstFeeEditable\": true," +
-				"\"portfolioLine\": {" + 
-				"\"description\": \"LS Especial\"," + 
-				"\"id\": 1" + 
-				"}," + 
+				"\"initialCanonFirstFeeVisible\": true," + 
 				"\"initialCanonCEVisible\": true," + 
-				"\"initialCanonCeEditable\": true," +
 				"\"ceValueVisible\": true," + 
-				"\"ceValue\": null," + 
-				"\"portfolioLineEditable\": true," + 
-				"\"rateTypeEditable\": true," + 
-				"\"rateSubtypeEditable\": true," + 
-				"\"rateSubtype\": {" + 
-				"\"parentRateId\": null," + 
-				"\"rateDate\": null," + 
-				"\"rateID\": 93," + 
-				"\"rateInterest\": 0," + 
-				"\"rateIsMultiplier\": false," + 
-				"\"rateIsTop\": false," + 
-				"\"rateState\": \"Alta\"," + 
-				"\"rateSub\": []," + 
-				"\"rateSubTypeRate\": \"Nico2\"," + 
-				"\"rateTypeMoney\": \"Peso\"," + 
-				"\"rateTypeRate\": {" + 
-				"\"description\": \"Fija\"," + 
-				"\"id\": 1" + 
-				"}" + 
-				"}," + 
 				"\"fundsCostVisible\": true," + 
 				"\"equipmentCostVisible\": true," + 
+				"\"equipmentCostEditable\": true," + 
 				"\"hiddenDiscountVisible\": true," + 
 				"\"leasingFactorVisible\": true," + 
-				"\"equipmentCostEditable\": true," + 
 				"\"feeLessorVisible\": true," + 
-				"\"percentualFeeToPayValue\": null," + 
 				"\"percentualFeeToPayValueVisible\": true," + 
-				"\"percentualFeeToPayValueEditable\": true," + 
-				"\"feeLessorEditable\": true," + 
 				"\"admFeeLessorVisible\": true," + 
 				"\"admFeeLessorPercentageValueVisible\": true," + 
-				"\"admFeeLessorEditable\": true," + 
-				"\"admFeeLessorPercentageValueEditable\": true," + 
-				"\"admFeeLessorPercentageValue\": 6," + 
+				"\"amountToFinanceVisible\": true," + 
 				"\"upFrontIvaVisible\": true," + 
 				"\"contractCurrencyVisible\": true," + 
-				"\"contractCurrencyEditable\": true," + 
-				"\"tnaPercentageValue\": 66," + 
 				"\"tnaPercentageValueVisible\": true," + 
-				"\"tnaPercentageValueEditable\": true," + 
+				"\"gracePeriodVisible\": true," + 
 				"\"feeBonificationVisible\": true," + 
-				"\"validFrom\": \"2018-04-20T03:00:00.0Z\"," + 
-				"\"validUntil\": \"2019-04-06T03:00:00.0Z\"," + 
-				"\"name\": \"Producto 17\"," + 
+				"\"rateSubtype\": " + bodyTasa + "," + 
+				"\"percentualFeeToPayValue\": " + valorFeeImpo + "," + 
+				"\"admFeeLessorPercentageValue\": " + valorFeeAdm + "," + 
+				"\"tnaPercentageValue\": " + tna + "," + 
+				"\"amountToFinanceEditable\": true," + 
+				"\"gracePeriod\": {" + 
+				"\"description\": \"Meses 1\"," + 
+				"\"id\": 1" + 
+				"}," + 
+				"\"gracePeriodEditable\": true," + 
+				"\"feeBonificationEditable\": true," + 
+				"\"name\":\""+ nombreProducto + "\"," + 
 				"\"productStatus\": {" + 
-				"\"statusDate\": \"2018-04-20T15:33:21.876Z\"," + 
+				"\"statusDate\": \"2018-05-04T20:02:52.706Z\"," + 
 				"\"observation\": \"obs prod en analisis\"," + 
 				"\"name\": \"En Analisis\"," + 
 				"\"entityType\": \"PRODUCTO\"," + 
@@ -1140,11 +893,11 @@ public class Alta_Producto {
 				"\"id\": 7" + 
 				"}" + 
 				"}," + 
-				"\"observations\": \"Producto 17\"," + 
+				"\"observations\": \"Observaciones de Productos\"," + 
 				"\"campaign\": \"\"" + 
-				"}");
+				"}}}");
 	}
-	
+
 	public String getAltaProducto() {
 		return altaProducto;
 	}
