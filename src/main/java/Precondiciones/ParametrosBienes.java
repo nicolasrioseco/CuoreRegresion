@@ -1,10 +1,9 @@
 package Precondiciones;
 
 import static io.restassured.RestAssured.*;
-
+import io.restassured.response.Response;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import MetodosBienes.Atributo.Datos_Atributo;
 import MetodosBienes.Bienes.Datos_Bien;
 import MetodosBienes.Clase.Datos_Clase;
@@ -18,7 +17,6 @@ import MetodosBienes.Marca.Alta_Marca;
 import MetodosBienes.Marca.AsociarMarca;
 import MetodosBienes.Modelo.Datos_Modelo;
 import MetodosBienes.SubClase.Datos_SubClase;
-import io.restassured.response.Response;
 import utility.ExcelUtils;
 
 
