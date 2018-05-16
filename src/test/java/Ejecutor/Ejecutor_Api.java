@@ -25,12 +25,17 @@ public class Ejecutor_Api{
 	public static ArrayList<String> proveedores = new ArrayList<String>();
 	public static String [][] bienes;
 	public static ArrayList<String> acuerdos = new ArrayList<String>();
+	public static String ejecucion = "Remoto";//Remoto al ejecutar desde Jenkins y Local al ejecutar desde local
 
 	@OrderedTest(order=1)
 	@Test
 	public void setInicial() throws Exception {
 		System.out.println("\n*************************Inicializando Ejecución*************************\n");
-		ExcelUtils.setExcelInicial(Constant.Path_TestData + Constant.File_TestData);
+		if(ejecucion.contains("Remoto")) {
+			ExcelUtils.setExcelInicial(Constant.Path_Alternative + Constant.File_TestData);
+		}else {
+			ExcelUtils.setExcelInicial(Constant.Path_TestData + Constant.File_TestData);
+		}
 		System.out.println(">Iniciando validación de Atributos Cabeceras no parametrizados");
 		AtributoInicial setAtributoInicial = new AtributoInicial();
 		setAtributoInicial.atributosInicialesTipoSeg();
