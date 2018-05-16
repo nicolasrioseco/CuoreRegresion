@@ -31,11 +31,7 @@ public class Ejecutor_Api{
 	@Test
 	public void setInicial() throws Exception {
 		System.out.println("\n*************************Inicializando Ejecución*************************\n");
-		if(ejecucion.contains("Remoto")) {
-			ExcelUtils.setExcelInicial(Constant.Path_Alternative + Constant.File_TestData);
-		}else {
-			ExcelUtils.setExcelInicial(Constant.Path_TestData + Constant.File_TestData);
-		}
+		ExcelUtils.setExcelInicial(Constant.Path_TestData + Constant.File_TestData);
 		System.out.println(">Iniciando validación de Atributos Cabeceras no parametrizados");
 		AtributoInicial setAtributoInicial = new AtributoInicial();
 		setAtributoInicial.atributosInicialesTipoSeg();
