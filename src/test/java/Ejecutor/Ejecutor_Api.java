@@ -71,7 +71,6 @@ public class Ejecutor_Api{
 		ExcelUtils.setExcelFile("Bienes");
 		int registros = (int) ExcelUtils.getCellDataint(3,15);
 		int i;
-
 		if(registros != 0) {
 
 			//Genero matriz
