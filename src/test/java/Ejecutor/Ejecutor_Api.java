@@ -108,7 +108,7 @@ public class Ejecutor_Api{
 	@OrderedTest(order=4)
 	@Test
 	public void metodosAltaTasas() throws Exception {
-		System.out.println("************************Inicializando Alta de Tasas************************\n)");
+		System.out.println("************************Inicializando Alta de Tasas************************\n");
 		ExcelUtils.setExcelFile("Tasas");
 		int registros = (int) ExcelUtils.getCellDataint(3,16);
 		int i;
@@ -137,7 +137,7 @@ public class Ejecutor_Api{
 	@OrderedTest(order=5)
 	@Test
 	public void metodosConfigurarImpuestos() throws Exception {
-		System.out.println("*********************Inicializando Alta de Impuestos*********************\n)");
+		System.out.println("*********************Inicializando Alta de Impuestos*********************\n");
 		ExcelUtils.setExcelFile("Impuestos");
 		int registros = (int) ExcelUtils.getCellDataint(3,6);
 		int i;
@@ -159,7 +159,7 @@ public class Ejecutor_Api{
 	@OrderedTest(order=6)
 	@Test
 	public void metodosAltaAcuerdo() throws Exception {
-		System.out.println("***************Inicializando Alta de Acuerdos de Servicios***************\n)");
+		System.out.println("***************Inicializando Alta de Acuerdos de Servicios***************\n");
 		ExcelUtils.setExcelFile("AcuerdoServicio");
 		int registros = (int) ExcelUtils.getCellDataint(3,7);
 		int i;
@@ -182,7 +182,7 @@ public class Ejecutor_Api{
 	@OrderedTest(order=7)
 	@Test
 	public void metodosServicio() throws Exception {
-		System.out.println("***********Inicializando Alta de Servicios***********\n)");
+		System.out.println("***********Inicializando Alta de Servicios***********\n");
 		ExcelUtils.setExcelFile("Servicios");
 		int registros = (int) ExcelUtils.getCellDataint(3,6);
 		int i;
@@ -207,7 +207,7 @@ public class Ejecutor_Api{
 	@OrderedTest(order=8)
 	@Test
 	public void metodosProducto() throws Exception {
-		System.out.println("***********Inicializando Alta de Productos***********\n)");
+		System.out.println("***********Inicializando Alta de Productos***********\n");
 		ExcelUtils.setExcelFile("Productos");
 		int registros = (int) ExcelUtils.getCellDataint(3,10);
 		int i;
