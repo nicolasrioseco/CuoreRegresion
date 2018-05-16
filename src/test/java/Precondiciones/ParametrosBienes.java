@@ -55,7 +55,6 @@ public class ParametrosBienes {
 		Datos_Atributo datos_Atributos = new Datos_Atributo();
 		String atributo_post = datos_Atributos.setdatos_atributo(row);
 		ParametrosBienes.row = row;
-		System.out.println(atributo_post);
 		ParametrosBienes.bodyAtributo = 
 				given()
 				.contentType("application/json")
