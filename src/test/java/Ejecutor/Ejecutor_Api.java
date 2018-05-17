@@ -218,6 +218,9 @@ public class Ejecutor_Api{
 				int seleccionBien = (int) ExcelUtils.getCellDataint(row,15);
 				ParametrosProductos setParametros = new ParametrosProductos();
 				setParametros.AltaProducto(row, bienes[seleccionBien][3]);
+				setParametros.createProducto();
+				setParametros.CompleteAprobarProducto();
+				setParametros.aprobarProducto();
 				System.out.println("> Se dió de alta y aprobó el " + (row-2) + "º Producto de " + registros);
 			}System.out.println("\n*************************************************************************\n");
 		}else {
