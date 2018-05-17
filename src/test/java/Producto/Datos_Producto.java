@@ -12,7 +12,7 @@ public class Datos_Producto {
 
 	public String setDatos_Productos(int row, String bodyBien) throws Exception{
 		
-		Datos_Producto.nombreProducto = ExcelUtils.getCellData(row,12);
+		Datos_Producto.nombreProducto = ExcelUtils.getCellData(row,0);
 		String feeDador = ExcelUtils.getCellData(row,2);
 		String feeImpoDador = ExcelUtils.getCellData(row,4);
 		int valorFeeAdm = (int) ExcelUtils.getCellDataint(row,3);
