@@ -895,7 +895,7 @@ public class Alta_Producto {
 				"}," + 
 				"\"observations\": \"Observaciones de Productos\"," + 
 				"\"campaign\": \"\"" + 
-				"}}}");
+				"}");
 	}
 
 	public String getAltaProducto() {
