@@ -7,5 +7,4 @@ public class CuoreDescription {
 				+ "Validando las altas de todos los componentes mediante servicios,\r"
 				+ "utilizando metodos post y get de json");
 	}
-
 }

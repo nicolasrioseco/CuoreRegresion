@@ -7,6 +7,8 @@ import Producto.CompleteAprobarProductos;
 import Producto.CreateProducto;
 import Producto.Datos_Producto;
 
+
+
 public class ParametrosProductos {
 
 	public static String Defoult_URL = "http://34.234.32.246:8082/api/";
@@ -21,13 +23,15 @@ public class ParametrosProductos {
 		
 		Datos_Producto objDatos_Producto = new Datos_Producto();
 		String altaProducto_post = objDatos_Producto.setDatos_Productos(row, bodyBien);
+		System.out.println(altaProducto_post);
 		ParametrosProductos.bodyProducto =
 				given()
 				.contentType("application/json")
 				.headers("x-auth-token",token)
 				.body(altaProducto_post)
 				.when()
-				.post(Defoult_URL+"products/product").getBody().asString();			
+				.post(Defoult_URL+"products/product").getBody().asString();	
+		System.out.println(ParametrosProductos.bodyProducto);
 		ParametrosProductos.productoID = ((bodyProducto.split("],\"id\":"))[1]).split(",\"initialCanonCEVisible")[0];
 	}
 
