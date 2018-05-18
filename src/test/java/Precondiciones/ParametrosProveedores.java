@@ -6,11 +6,12 @@ import Proveedor.Alta_AcuerdoServicio;
 import Proveedor.Datos_AcuerdoServicio;
 import Proveedor.Datos_Proveedor;
 import io.restassured.response.Response;
+import utility.Constant;
 
 public class ParametrosProveedores {
 
-	public static String Defoult_URL = utility.Constant.Defoult_URL;
-	public static String token = utility.Constant.token;
+	public static String Defoult_URL = Constant.Defoult_URL;
+	public static String token = Constant.token;
 	public static String idAcuerdo;
 	public static String bodyAcuerdo;
 	public static String idTareaAcuerdo;

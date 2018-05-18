@@ -6,13 +6,13 @@ import Producto.AprobarProducto;
 import Producto.CompleteAprobarProductos;
 import Producto.CreateProducto;
 import Producto.Datos_Producto;
-
+import utility.Constant;
 
 
 public class ParametrosProductos {
 
-	public static String Defoult_URL = utility.Constant.Defoult_URL;
-	public static String token = utility.Constant.token;
+	public static String Defoult_URL = Constant.Defoult_URL;
+	public static String token = Constant.token;
 	public static String bodyProducto;
 	public static String productoID;
 	public static String procesoID_Producto;

@@ -8,12 +8,13 @@ import Impuestos.Datos_confImpuestos;
 import MetodosTasas.Tasa.Datos_Tasa;
 import MetodosTasas.TasaTTR.Datos_TTR;
 import MetodosTasas.TasaVariable.Datos_TasaVariable;
+import utility.Constant;
 
 public class ParametrosTasas {
 
 
-	public static String Defoult_URL = utility.Constant.Defoult_URL;
-	public static String token = utility.Constant.token;
+	public static String Defoult_URL = Constant.Defoult_URL;
+	public static String token = Constant.token;
 	public String bodyTasa;
 	public String idTasa;
 	public String bodyTV;

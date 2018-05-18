@@ -4,9 +4,6 @@ import static io.restassured.RestAssured.*;
 import io.restassured.response.Response;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import com.thoughtworks.qdox.model.expression.Constant;
-
 import MetodosBienes.Atributo.Datos_Atributo;
 import MetodosBienes.Bienes.Datos_Bien;
 import MetodosBienes.Clase.Datos_Clase;
@@ -21,13 +18,13 @@ import MetodosBienes.Marca.AsociarMarca;
 import MetodosBienes.Modelo.Datos_Modelo;
 import MetodosBienes.SubClase.Datos_SubClase;
 import utility.ExcelUtils;
-
+import utility.Constant;
 
 public class ParametrosBienes {
 
 
-	public static String Defoult_URL = utility.Constant.Defoult_URL;
-	public static String token = utility.Constant.token;
+	public static String Defoult_URL = Constant.Defoult_URL;
+	public static String token = Constant.token;
 	public static String idBien;
 	public static String idClase;
 	public static String bodyClase;

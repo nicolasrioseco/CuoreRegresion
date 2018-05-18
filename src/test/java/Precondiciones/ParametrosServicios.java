@@ -4,12 +4,13 @@ import static io.restassured.RestAssured.given;
 
 import Servicio.AprobarServicio;
 import Servicio.Datos_Servicio;
+import utility.Constant;
 
 public class ParametrosServicios {
 
 	
-	public static String Defoult_URL = utility.Constant.Defoult_URL;
-	public static String token = utility.Constant.token;
+	public static String Defoult_URL = Constant.Defoult_URL;
+	public static String token = Constant.token;
 	public static String bodyServicio;
 	public static String idServicio;
 	public static String idProcess;
